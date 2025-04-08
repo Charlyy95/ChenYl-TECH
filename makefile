@@ -12,7 +12,7 @@ all: $(PROG)
 
 #Compilation du programme
 
-$(PROG): $(SRC) fichier.h
+$(PROG): $(SRC) animal.h
 	gcc -Wall -o $(PROG) $(SRC)
 
 #Nettoyage
