@@ -2,7 +2,7 @@ PROG = projet
 
 # Sources
 
-SRC = main.c    //tous les fichiers compilés
+SRC = main.c    #tous les fichiers compilés
 
 #Règle par défaut : compile et exécute
 
@@ -18,4 +18,4 @@ $(PROG): $(SRC) fichier.h
 #Nettoyage
 
 clean: 
-	rm -f $(PRG)
+	rm -f $(PROG)
