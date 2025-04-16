@@ -2,7 +2,7 @@ PROG = projet
 
 # Sources
 
-SRC = main.c    #tous les fichiers compilés
+SRC = main.c fillTable.c  addAnimal.c animal-io.c #tous les fichiers compilés
 
 #Règle par défaut : compile et exécute
 
@@ -12,7 +12,7 @@ all: $(PROG)
 
 #Compilation du programme
 
-$(PROG): $(SRC) animal.h
+$(PROG): $(SRC) animal.h fillTable.h
 	gcc -Wall -o $(PROG) $(SRC)
 
 #Nettoyage
