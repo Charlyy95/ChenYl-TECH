@@ -20,6 +20,7 @@ Animal *fillTable (){			//initialisé a 50 pour etre récuperé plus tard
 	FILE *f;
 	
 	char chaine[50];
+	int count = 0;
 	
 	Animal *tab = malloc (sizeof(Animal) * MAX_ANIMALS);
 		
@@ -36,7 +37,8 @@ Animal *fillTable (){			//initialisé a 50 pour etre récuperé plus tard
 		
 		if (f == NULL){
 			//printf ("erreur ouverture fichier\n");
-			printf ("L'animal %d n'existe pas\n", a+1);
+			//printf ("L'animal %d n'existe pas\n", a+1);
+			count++;
 			//exit (1);
 		}
 		
@@ -60,6 +62,7 @@ Animal *fillTable (){			//initialisé a 50 pour etre récuperé plus tard
 		fclose (f);
 	}
 	
+	printf ("\n%d places avaible in the kennel\n\n", count);
 	/*
 	printf ("id : %d\n", tab[a].id);
 	printf ("nom : %s\n", tab[a].name);
@@ -111,7 +114,7 @@ Animal * search (Animal * tab){
 	
 	if (num ==1){
 		
-		printf ("nom recherche (majuscule au debut) :");
+		printf ("nom recherche (majuscule au debut) : ");
 		scanf ("%s", nomRecherche);
 		printf ("\n");
 		
@@ -131,7 +134,7 @@ Animal * search (Animal * tab){
 				
 			}
 		}
-		printf ("%d animaux correspondent a cette recherche.", a);
+		printf ("%d animaux correspondent a cette recherche.\n", a);
 		
 	}
 	
