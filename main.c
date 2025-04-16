@@ -6,6 +6,10 @@ int main() {
     Animal shelter[MAX_ANIMALS];
     int animal_count = 0;
     int choice;
+	
+	//case 2
+	Animal * res = NULL;
+	int test = 0;
 
     printf("=== ChenYI-Tech Animal Shelter ===\n");
     
@@ -25,9 +29,26 @@ int main() {
                     printf("Failed to add animal!\n");
                 }
                 break;
+				
             case 2:
-                search(fillTable());
+                res = search(fillTable());
+				printf ("pousser la recherche ?\n");
+				printf ("1- Yes\n");
+				printf ("2- No\n");
+				scanf ("%d", &test);
+				
+				do {
+					res = search(res);
+					printf ("pousser encore plus la recherche ?\n");
+					printf ("1- Yes\n");
+					printf ("2- No\n");
+					scanf("%d", &test);
+				}while (test == 1);
+				printf ("fin de la recherche");
+				
+				free (res);
 				break;
+				
 			case 3 :
                 //printf("Exiting...\n");
                 break;
