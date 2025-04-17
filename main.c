@@ -14,6 +14,7 @@ int main() {
         printf("\nMain Menu:\n");
         printf("1. Add animal\n");
         printf("2. Search animal\n");
+		printf("3. a implementer\n");
         printf("4. Exit\n");
         printf("Choice: ");
 		
@@ -24,7 +25,7 @@ int main() {
 			if (verif != 1 || choice < 1 || choice > 4) {
 				printf("Numero invalide\n");
 
-				while (getchar() != '\n');					//clean input buffer to avoid infinite loop
+				while (getchar() != '\n');							//clean input buffer to avoid infinite loop
 			}
 		} while (verif != 1 || choice < 1 || choice > 4);
         
@@ -38,36 +39,19 @@ int main() {
 				
             case 2: {
 				
-				
 				Animal * newRes = NULL;
 				Animal * res = NULL;
 				
 				int test = 0;
 				verif = 0;
-
-				//first search
-                res = search(fillTable());
-				printf ("pousser la recherche ?\n");
-				printf ("1- Yes\n");
-				printf ("2- No\n");
-				
+				res = search(fillTable());							//first search
 				do {
-					printf("Entrer le numero souhaite : ");
-					test = scanf("%d", &choice);
-
-					if (test != 1 || choice < 1 || choice > 2) {
-						printf("Numero invalide\n");
-
-						while (getchar() != '\n');					//clean input buffer to avoid infinite loop
-					}
-				} while (test != 1 || choice < 1 || choice > 2);
-				
-				do {												//verif ?
+					
 					newRes = search(res);
 					free(res);
 					res = newRes;
 					
-					printf ("pousser encore plus la recherche ?\n");
+					printf ("pousser la recherche ?\n");
 					printf ("1- Yes\n");
 					printf ("2- No\n");
 					
