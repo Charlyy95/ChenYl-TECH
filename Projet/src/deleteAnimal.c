@@ -7,7 +7,7 @@ int askAnimal(animal *tab, int taille) {
         printf("Quel est l'identifiant de l'animal que vous souhaitez retirer ?\n");
         scanf("%d", &id);
 
-        // Vérifie si l'ID existe dans le tableau
+       
         for (int i = 0; i < taille; i++) {
             if (*(tab+i).id == id) {
                 existe = 1;
