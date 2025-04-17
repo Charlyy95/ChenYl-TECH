@@ -1,10 +1,37 @@
+//cette fonction demande à l'utilisateur quel animal est adopter et donc doit etre retirer elle verifie si il existe bien et retourne son identifiant 
+int askAnimal(animal *tab, int taille) {
+    int id;
+    int existe = 0;
+
+    do {
+        printf("Quel est l'identifiant de l'animal que vous souhaitez retirer ?\n");
+        scanf("%d", &id);
+
+        // Vérifie si l'ID existe dans le tableau
+        for (int i = 0; i < taille; i++) {
+            if (*(tab+i).id == id) {
+                existe = 1;
+                break;
+            }
+        }
+
+        if (!existe) {
+            printf("Aucun animal avec l'identifiant %d. Réessayez.\n", id);
+        }
+
+    } while (!existe);
+
+    return id;
+}
+
+
 
 //il faut la taille du tableau l'identifiant de l'animal et le tableau de structure cette fonction retourne le tableau mis à jour
 animal* supprimerAnimalParID(animal *tab, int *taille, int idRecherche) {
    
     int index = -1;
     for (int i = 0; i < *taille; i++) {
-        if (tab[i].id == idRecherche) {
+        if (*(tab+i).id == idRecherche) {
             index = i;
             break;
         }
@@ -28,7 +55,7 @@ animal* supprimerAnimalParID(animal *tab, int *taille, int idRecherche) {
 
   
     for (int i = index; i < *taille - 1; i++) {
-        tab[i] = tab[i + 1];
+        *(tab+i) = *(tab+i+1);
     }
 
     (*taille)--;
