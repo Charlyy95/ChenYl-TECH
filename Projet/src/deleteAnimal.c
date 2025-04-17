@@ -63,3 +63,6 @@ animal* supprimerAnimalParID(animal *tab, int *taille, int idRecherche) {
     printf("Animal avec ID %d supprimé du tableau.\n", idRecherche);
     return tab;
 }
+// dans le main : 
+//int id = askAnimal(animaux, taille);
+//supprimerAnimalParID(animaux, &taille, id);
