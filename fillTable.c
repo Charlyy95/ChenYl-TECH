@@ -39,6 +39,7 @@ Animal *fillTable (){			//initialisé a 50 pour etre récuperé plus tard
 			//printf ("erreur ouverture fichier\n");
 			//printf ("L'animal %d n'existe pas\n", a+1);
 			count++;
+			continue;											//empeche la lecture de fichier vides
 			//exit (1);
 		}
 		
