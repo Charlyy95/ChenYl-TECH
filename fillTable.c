@@ -4,18 +4,18 @@
 
 void displayAnimal (Animal * tab, int c){
 	printf ("Animal n%d :\n\n", (c+1)); 
-	printf ("Id : %d\n", tab[c].id);
-	printf ("Name : %s\n", tab[c].name);
+	printf ("Id      : %d\n", tab[c].id);
+	printf ("Name    : %s\n", tab[c].name);
 	printf ("Species : %s\n", tab[c].species);
-	printf ("Age : %d\n", tab[c].age);
-	printf ("Weight : %.2f\n", tab[c].weight);
+	printf ("Age     : %d\n", tab[c].age);
+	printf ("Weight  : %.2f\n", tab[c].weight);
 	printf ("Comment : %s\n\n", tab[c].comment);
 		
 }
 
 
 
-Animal *fillTable (){			//initialisé a 50 pour etre récuperé plus tard
+Animal *fillTable (){	
 	
 	FILE *f;
 	
@@ -39,7 +39,7 @@ Animal *fillTable (){			//initialisé a 50 pour etre récuperé plus tard
 			//printf ("erreur ouverture fichier\n");
 			//printf ("L'animal %d n'existe pas\n", a+1);
 			count++;
-			continue;											//empeche la lecture de fichier vides
+			continue;											//empeche la lecture de fichier inexistants
 			//exit (1);
 		}
 		
@@ -250,3 +250,21 @@ Animal * search (Animal * tab){
 	}
 	return newTab;
 }
+
+
+
+
+/*
+typedef struct{
+int id;
+char name[50];
+char species[20];
+int age;
+float weight;
+char comment[100];
+
+}Animal;
+
+OneDrive\Documents\CY_TECH\PREING1-2\INFO\ChenYl-TECH
+
+*/
