@@ -1,18 +1,18 @@
 #include "../include/animal.h"
 #include <stdio.h>
 
-
 int main() {
     Animal shelter[MAX_ANIMALS];
     int animal_count = 0;
     int choice;
-
+    
     printf("=== ChenYI-Tech Animal Shelter ===\n");
     
     while (1) {
         printf("\nMain Menu:\n");
         printf("1. Add Animal\n");
-        printf("2. Exit\n");
+        printf("2. Remove Animal\n");
+        printf("3. Exit\n");
         printf("Choice: ");
         
         scanf("%d", &choice);
@@ -24,9 +24,22 @@ int main() {
                     printf("Failed to add animal!\n");
                 }
                 break;
-            case 2:
+
+            case 2: {
+                if (animal_count == 0) {
+                    printf("Aucun animal à supprimer.\n");
+                    break;
+                }
+
+                int id = askAnimal(shelter, animal_count); // Demande ID existant
+                supprimerAnimalParID(shelter, &animal_count, id); // Supprime animal + fichier
+                break;
+            }
+
+            case 3:
                 printf("Exiting...\n");
                 return 0;
+
             default:
                 printf("Invalid choice!\n");
         }
