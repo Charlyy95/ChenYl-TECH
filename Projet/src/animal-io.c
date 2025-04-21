@@ -8,7 +8,7 @@ bool saveAnimalToFile(const Animal *animal) {
     
     // Construit le nom de fichier (ex: "animaux/001.txt")
     char filename[256];
-    snprintf(filename, sizeof(filename), "%s%03d.txt", ANIMALS_DIR, animal->id);
+    snprintf(filename, sizeof(filename), "%s%d.txt", ANIMALS_DIR, animal->id);
     
     // Ouvre le fichier en écriture
     FILE *file = fopen(filename, "w");
