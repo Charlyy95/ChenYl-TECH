@@ -31,8 +31,8 @@ int main() {
                     break;
                 }
 
-                int id = askAnimal(shelter, animal_count); // Demande ID existant
-                supprimerAnimalParID(shelter, &animal_count, id); // Supprime animal + fichier
+                int id = askAnimal(shelter, animal_count); 
+                deleteAnimalByID(shelter, &animal_count, id); 
                 break;
             }
 
