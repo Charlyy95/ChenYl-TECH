@@ -13,7 +13,7 @@ int addAnimal(Animal animals[], int *count) {
     newAnimal.id = *count + 1; // Sequential ID assignment
     
     // Collect animal data
-    printf("\n=== Adding Animal ID: %03d ===\n", newAnimal.id);
+    printf("\n=== Adding Animal ID: %d ===\n", newAnimal.id);
     
  
     
