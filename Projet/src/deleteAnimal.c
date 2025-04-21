@@ -1,68 +1,72 @@
 //cette fonction demande à l'utilisateur quel animal est adopter et donc doit etre retirer elle verifie si il existe bien et retourne son identifiant 
-int askAnimal(animal *tab, int taille) {
+int askAnimal(animal *tab, int size) {
     int id;
-    int existe = 0;
+    int exist = 0;
 
     do {
         printf("Quel est l'identifiant de l'animal que vous souhaitez retirer ?\n");
         scanf("%d", &id);
 
        
-        for (int i = 0; i < taille; i++) {
-            if (*(tab+i).id == id) {
-                existe = 1;
+        for (int i = 0; i < size; i++) {
+          if ((tab + i)->id == id)  {
+                exist = 1;
                 break;
             }
         }
 
-        if (!existe) {
+        if (!exist) {
             printf("Aucun animal avec l'identifiant %d. Réessayez.\n", id);
         }
 
-    } while (!existe);
+    } while (!exist);
 
     return id;
 }
 
 
 
-//il faut la taille du tableau l'identifiant de l'animal et le tableau de structure cette fonction retourne le tableau mis à jour
-animal* supprimerAnimalParID(animal *tab, int *taille, int idRecherche) {
+//il faut la size du tableau l'identifiant de l'animal et le tableau de structure cette fonction retourne le tableau mis à jour
+animal* deleteAnimalByID(animal *tab, int *size, int idSearch) {
    
     int index = -1;
-    for (int i = 0; i < *taille; i++) {
-        if (*(tab+i).id == idRecherche) {
+    for (int i = 0; i < *size; i++) {
+       if ((tab + i)->id == idSearch) {
             index = i;
             break;
         }
     }
 
     if (index == -1) {
-        printf("Aucun animal avec l'ID %d trouvé.\n", idRecherche);
+        printf("Aucun animal avec l'ID %d trouvé.\n", idSearch);
         return tab;
     }
 
     
-    char nomFichier[100];
-    sprintf(nomFichier, "%d.txt", idRecherche); 
+    char nameFile[100];
+    sprintf(nameFile, "%d.txt", idSearch); 
 
 
-    if (remove(nomFichier) == 0) {
-        printf("Fichier '%s' supprimé avec succès.\n", nomFichier);
+    if (remove(nameFile) == 0) {
+        printf("Fichier '%s' supprimé avec succès.\n", nameFile);
     } else {
-        printf("Erreur lors de la suppression du fichier '%s'.\n", nomFichier);
+        printf("Erreur lors de la suppression du fichier '%s'.\n", nameFile);
     }
 
   
-    for (int i = index; i < *taille - 1; i++) {
+    for (int i = index; i < *size - 1; i++) {
         *(tab+i) = *(tab+i+1);
     }
 
-    (*taille)--;
-
-    printf("Animal avec ID %d supprimé du tableau.\n", idRecherche);
+    (*size)--;
+    tab = realloc(tab, (*size) * sizeof(animal));
+        if (tab == NULL && *size > 0) {
+            perror("Erreur lors du realloc");
+            exit(EXIT_FAILURE);
+    }
+    printf("Animal avec ID %d supprimé du tableau.\n", idSearch);
     return tab;
 }
 // dans le main : 
-//int id = askAnimal(animaux, taille);
-//supprimerAnimalParID(animaux, &taille, id);
+//int id = askAnimal(animaux, size);
+//supprimerAnimalParID(animaux, &size, id);
