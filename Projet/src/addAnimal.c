@@ -15,9 +15,7 @@ int addAnimal(Animal animals[], int *count) {
     // Collect animal data
     printf("\n=== Adding Animal ID: %03d ===\n", newAnimal.id);
     
-    printf("Name: ");
-    fgets(newAnimal.name, MAX_NAME_LEN, stdin);
-    newAnimal.name[strcspn(newAnimal.name, "\n")] = '\0';
+ 
     
     //// Get animal name (with newline handling)
     printf("Name: ");
