@@ -3,12 +3,13 @@
 
 
 bool saveAnimalToFile(const Animal *animal) {
-    // Crée le dossier s'il n'existe pas (ignore les erreurs si existe déjà)
-    mkdir(ANIMALS_DIR, 0777);
+  struct stat st;
+    if (stat(ANIMALS_DIR, &st) == -1) {
+        mkdir(ANIMALS_DIR, 0755);
+    }
     
-    // Construit le nom de fichier (ex: "animaux/001.txt")
     char filename[256];
-    snprintf(filename, sizeof(filename), "%s%d.txt", ANIMALS_DIR, animal->id);
+    snprintf(filename, sizeof(filename), "%s/%d.txt", ANIMALS_DIR, animal->id);
     
     // Ouvre le fichier en écriture
     FILE *file = fopen(filename, "w");
