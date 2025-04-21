@@ -56,7 +56,7 @@ int addAnimal(Animal animals[], int *count) {
     
     // Add to memory array
     animals[(*count)++] = newAnimal;
-    printf("Animal successfully registered in file %03d.txt\n", newAnimal.id);
+    printf("Animal successfully registered in file %d.txt\n", newAnimal.id);
     
     return newAnimal.id;
 }
