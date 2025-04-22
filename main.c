@@ -46,10 +46,20 @@ int main() {
 				int test = 0;
 				verif = 0;
 				
-				res = search(tabAnimal);							//first search
+				int nbElement = 0;
+				int *p;
+				p = &nbElement;
+				
+				res = search(tabAnimal, p);							//first search
 				
 				do {
 				
+					// Si la recherche ne trouve aucun résultat, on empêche la recherche supplémentaire
+					if (*p == 0 ) {
+							printf("Aucun resultat trouve. Vous ne pouvez pas pousser la recherche.\n");
+							break;
+					}
+					
 					do {
 						printf("Pousser la recherche ?\n");
 						printf("1 - Oui\n");
@@ -66,7 +76,8 @@ int main() {
 
 					// S'il veut continuer, on pousse la recherche
 					if (verif == 1) {
-						newRes = search(res);
+						*p = 0;
+						newRes = search(res, p);
 						free(res);
 						res = newRes;
 					}
@@ -82,9 +93,12 @@ int main() {
 			case 3 :
                 day_clean (tabAnimal);
                 break;
+				
 			case 4 :	
                 printf("Exiting...\n");
+				free (tabAnimal);
                 return 0;
+				
             default:
                 printf("Invalid choice!\n");
         }
