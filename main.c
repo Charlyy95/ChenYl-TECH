@@ -1,12 +1,13 @@
 #include "animal.h"
 #include "fillTable.h"
-
+#include "day_clean.h"
 
 int main() {
     Animal shelter[MAX_ANIMALS];
     int animal_count = 0;
     int choice;
 	int verif = 0;
+	Animal  * tabAnimal = fillTable();
 
     printf("=== ChenYI-Tech Animal Shelter ===\n");
     
@@ -14,7 +15,7 @@ int main() {
         printf("\nMain Menu:\n");
         printf("1. Add animal\n");
         printf("2. Search animal\n");
-		printf("3. a implementer\n");
+		printf("3. Duree du nettoyage\n");
         printf("4. Exit\n");
         printf("Choice: ");
 		
@@ -39,30 +40,39 @@ int main() {
 				
             case 2: {
 				
-				Animal * newRes = NULL;
 				Animal * res = NULL;
+				Animal * newRes = NULL;
 				
 				int test = 0;
 				verif = 0;
-				res = search(fillTable());							//first search
+				
+				res = search(tabAnimal);							//first search
+				
 				do {
-					
-					newRes = search(res);
-					free(res);
-					res = newRes;
-					
-					printf ("pousser la recherche ?\n");
-					printf ("1- Yes\n");
-					printf ("2- No\n");
-					
-					test = scanf("%d", &verif);
-					if (test != 1 || verif < 1 || verif > 2) {
-						printf("Numero invalide\n");
+				
+					do {
+						printf("Pousser la recherche ?\n");
+						printf("1 - Oui\n");
+						printf("2 - Non\n");
 
-						while (getchar() != '\n');					//clean input buffer to avoid infinite loop
+						test = scanf("%d", &verif);
+						printf ("\n");
+						
+						if (test != 1 || verif < 1 || verif > 2) {
+							printf("Numéro invalide\n");
+							while (getchar() != '\n'); // Vider le buffer
+						}
+					} while (test != 1 || verif < 1 || verif > 2);
+
+					// S'il veut continuer, on pousse la recherche
+					if (verif == 1) {
+						newRes = search(res);
+						free(res);
+						res = newRes;
 					}
-				} while (test != 1 || verif < 1 || verif > 2);
 
+				} while (verif == 1);
+				
 				printf ("fin de la recherche.\n");
 				free (res);
 				
@@ -70,7 +80,7 @@ int main() {
 			}
 			
 			case 3 :
-                //printf("Exiting...\n");
+                day_clean (tabAnimal);
                 break;
 			case 4 :	
                 printf("Exiting...\n");
