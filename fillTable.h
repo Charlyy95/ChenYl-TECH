@@ -4,5 +4,5 @@
 
 
 Animal * fillTable();
-Animal * search();
-void displayAnimal (Animal * tab, int c);
+Animal * search(Animal * tab, int * count);
+void displayAnimal (Animal * tab, int * c);
