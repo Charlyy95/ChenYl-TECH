@@ -2,14 +2,14 @@
 #include "fillTable.h"
 
 
-void displayAnimal (Animal * tab, int c){
-	printf ("Animal n%d :\n\n", (c+1)); 
-	printf ("Id      : %d\n", tab[c].id);
-	printf ("Name    : %s\n", tab[c].name);
-	printf ("Species : %s\n", tab[c].species);
-	printf ("Age     : %d\n", tab[c].age);
-	printf ("Weight  : %.2f\n", tab[c].weight);
-	printf ("Comment : %s\n\n", tab[c].comment);
+void displayAnimal (Animal * tab, int * c){
+	printf ("Animal n%d :\n\n", (*c+1)); 
+	printf ("Id      : %d\n", tab[*c].id);
+	printf ("Name    : %s\n", tab[*c].name);
+	printf ("Species : %s\n", tab[*c].species);
+	printf ("Age     : %d\n", tab[*c].age);
+	printf ("Weight  : %.2f\n", tab[*c].weight);
+	printf ("Comment : %s\n\n", tab[*c].comment);
 		
 }
 
@@ -30,7 +30,7 @@ Animal *fillTable (){
 		}
 		
 	for (int a=0; a<MAX_ANIMALS; a++){	
-		// Crée la chaîne de caractère complète "animaux/1"
+		// Crée la chaîne de caractère complète "animaux/1.txt"
 			sprintf(chaine, "animaux/%d.txt", a+1);
 		
 		f = fopen(chaine, "r");
@@ -61,25 +61,25 @@ Animal *fillTable (){
 		fgets  (tab[a].comment, 100, f);
 		tab[a].comment[strcspn(tab[a].comment, "\n")] = '\0';
 		fclose (f);
+		
+		/*
+		printf ("id : %d\n", tab[a].id);
+		printf ("nom : %s\n", tab[a].name);
+		printf ("espece : %s\n", tab[a].species);
+		printf ("age : %d\n", tab[a].age);
+		printf ("poids : %f\n", tab[a].weight);
+		printf ("comment : %s\n", tab[a].comment);
+		*/
 	}
 	
-	printf ("\n%d places avaible in the kennel\n\n", count);
-	/*
-	printf ("id : %d\n", tab[a].id);
-	printf ("nom : %s\n", tab[a].name);
-	printf ("espece : %s\n", tab[a].species);
-	printf ("age : %d\n", tab[a].age);
-	printf ("poids : %f\n", tab[a].weight);
-	printf ("comment : %s\n", tab[a].comment);
-	*/
-
+	printf ("\n%d places avaible in the shelter\n\n", count);
+	
 	return tab;
 }
 
-Animal * search (Animal * tab){
+Animal * search (Animal * tab, int * count){
 		
 	int test = 0, num = 0;
-	int a = 0, b = 0, c = 0;
 	int choix = 0;
 	
 	int ageRecherche = 0;
@@ -122,20 +122,20 @@ Animal * search (Animal * tab){
 		for (int i = 0; i<MAX_ANIMALS; i++){
 			if (strcmp(tab[i].name, nomRecherche) == 0 ){
 				
-				newTab[a].id = tab[i].id;
-				strcpy (newTab[a].name, tab[i].name);
-				strcpy (newTab[a].species, tab[i].species);
-				newTab[a].age = tab[i].age;
-				newTab[a].weight = tab[i].weight;
-				strcpy (newTab[a].comment, tab[i].comment);
+				newTab[*count].id = tab[i].id;
+				strcpy (newTab[*count].name, tab[i].name);
+				strcpy (newTab[*count].species, tab[i].species);
+				newTab[*count].age = tab[i].age;
+				newTab[*count].weight = tab[i].weight;
+				strcpy (newTab[*count].comment, tab[i].comment);
 				
-				displayAnimal (newTab, c);
-				a++;
+				displayAnimal (newTab, count);
+				(*count)++;
 				
 				
 			}
 		}
-		printf ("%d animaux correspondent a cette recherche.\n", a);
+		printf ("%d animaux correspondent a cette recherche.\n\n", *count);
 		
 	}
 	
@@ -147,20 +147,20 @@ Animal * search (Animal * tab){
 		for (int i = 0; i<MAX_ANIMALS; i++){
 			if (strcmp(tab[i].species, especeRecherche) == 0 ){
 				
-				newTab[b].id = tab[i].id;
-				strcpy (newTab[b].name, tab[i].name);
-				strcpy (newTab[b].species, tab[i].species);
-				newTab[b].age = tab[i].age;
-				newTab[b].weight = tab[i].weight;
-				strcpy (newTab[b].comment, tab[i].comment);
+				newTab[*count].id = tab[i].id;
+				strcpy (newTab[*count].name, tab[i].name);
+				strcpy (newTab[*count].species, tab[i].species);
+				newTab[*count].age = tab[i].age;
+				newTab[*count].weight = tab[i].weight;
+				strcpy (newTab[*count].comment, tab[i].comment);
 				
-				displayAnimal (newTab, c);
-				b++;
+				displayAnimal (newTab, count);
+				(*count)++;
 				
 				
 			}
 		}
-		printf ("%d animaux correspondent a cette recherche.\n", b);
+		printf ("%d animaux correspondent a cette recherche.\n\n", *count);
 	}
 	
 	if (num ==3){
@@ -199,18 +199,18 @@ Animal * search (Animal * tab){
 			for (int i = 0; i<MAX_ANIMALS; i++){
 				if (tab[i].age <= ageRecherche && tab[i].age>0){
 					
-					newTab[c].id = tab[i].id;
-					strcpy (newTab[c].name, tab[i].name);
-					strcpy (newTab[c].species, tab[i].species);
-					newTab[c].age = tab[i].age;
-					newTab[c].weight = tab[i].weight;
-					strcpy (newTab[c].comment, tab[i].comment);
+					newTab[*count].id = tab[i].id;
+					strcpy (newTab[*count].name, tab[i].name);
+					strcpy (newTab[*count].species, tab[i].species);
+					newTab[*count].age = tab[i].age;
+					newTab[*count].weight = tab[i].weight;
+					strcpy (newTab[*count].comment, tab[i].comment);
 					
-					displayAnimal (newTab, c);
-					c++;
+					displayAnimal (newTab, count);
+					(*count)++;
 				}
 			}
-			printf ("%d animaux correspondent a cette recherche.\n", c);
+			printf ("%d animaux correspondent a cette recherche.\n\n", *count);
 		}			
 		
 		
@@ -232,39 +232,22 @@ Animal * search (Animal * tab){
 				if (tab[i].age >= ageRecherche && tab[i].age<50 ){
 					
 					
-					newTab[c].id = tab[i].id;
-					strcpy (newTab[c].name, tab[i].name);
-					strcpy (newTab[c].species, tab[i].species);
-					newTab[c].age = tab[i].age;
-					newTab[c].weight = tab[i].weight;
-					strcpy (newTab[c].comment, tab[i].comment);
+					newTab[*count].id = tab[i].id;
+					strcpy (newTab[*count].name, tab[i].name);
+					strcpy (newTab[*count].species, tab[i].species);
+					newTab[*count].age = tab[i].age;
+					newTab[*count].weight = tab[i].weight;
+					strcpy (newTab[*count].comment, tab[i].comment);
 					
-					displayAnimal (newTab, c);
-					c++;
+					displayAnimal (newTab, count);
+					(*count)++;
 					
 				}
 			}
-			printf ("%d animaux correspondent a cette recherche.\n", c);
+			printf ("%d animaux correspondent a cette recherche.\n\n", *count);
 		}
 				
 	}
+	
 	return newTab;
 }
-
-
-
-
-/*
-typedef struct{
-int id;
-char name[50];
-char species[20];
-int age;
-float weight;
-char comment[100];
-
-}Animal;
-
-OneDrive\Documents\CY_TECH\PREING1-2\INFO\ChenYl-TECH
-
-*/
