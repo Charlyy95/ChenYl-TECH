@@ -3,6 +3,8 @@
 #include <string.h>
 
 
-Animal * fillTable();
-Animal * search(Animal * tab, int * count);
 void displayAnimal (Animal * tab, int * c);
+void displayAllAnimals (Animal * tab, int * nbAnimals);
+
+Animal * fillTable (int *nbAnimals);
+Animal * search(Animal * tab, int * count);
