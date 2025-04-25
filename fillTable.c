@@ -13,14 +13,18 @@ void displayAnimal (Animal * tab, int * c){
 		
 }
 
+void displayAllAnimals (Animal * tab, int *nbAnimals){			//utile que si chaque fichier rpz un animal existant dans le chenil.
+	
+	for (int i = 0; i<*nbAnimals; i++){
+		displayAnimal (tab, &i);
+	}
+}
 
-
-Animal *fillTable (){	
+Animal *fillTable (int * nbAnimals){	
 	
 	FILE *f;
 	
-	char chaine[50];
-	int count = 0;
+	char chain[50];
 	
 	Animal *tab = malloc (sizeof(Animal) * MAX_ANIMALS);
 		
@@ -30,16 +34,15 @@ Animal *fillTable (){
 		}
 		
 	for (int a=0; a<MAX_ANIMALS; a++){	
-		// Crée la chaîne de caractère complète "animaux/1.txt"
-			sprintf(chaine, "animaux/%d.txt", a+1);
 		
-		f = fopen(chaine, "r");
+		sprintf(chain, "animaux/%d.txt", a+1);				// create string "animaux/(a+1).txt"
+		
+		f = fopen(chain, "r");
 		
 		if (f == NULL){
 			//printf ("erreur ouverture fichier\n");
-			//printf ("L'animal %d n'existe pas\n", a+1);
-			count++;
-			continue;											//empeche la lecture de fichier inexistants
+			(*nbAnimals)--;
+			continue;											//prevents reading of non-existent files
 			//exit (1);
 		}
 		
@@ -62,17 +65,9 @@ Animal *fillTable (){
 		tab[a].comment[strcspn(tab[a].comment, "\n")] = '\0';
 		fclose (f);
 		
-		/*
-		printf ("id : %d\n", tab[a].id);
-		printf ("nom : %s\n", tab[a].name);
-		printf ("espece : %s\n", tab[a].species);
-		printf ("age : %d\n", tab[a].age);
-		printf ("poids : %f\n", tab[a].weight);
-		printf ("comment : %s\n", tab[a].comment);
-		*/
 	}
 	
-	printf ("\n%d places avaible in the shelter\n\n", count);
+	printf ("\n%d animals in the shelter\n\n", *nbAnimals);
 	
 	return tab;
 }
@@ -80,21 +75,18 @@ Animal *fillTable (){
 Animal * search (Animal * tab, int * count){
 		
 	int test = 0, num = 0;
-	int choix = 0;
+	int choice = 0;
 	
-	int ageRecherche = 0;
-	char nomRecherche[50], especeRecherche[50];
+	int searchAge = 0;
+	char searchName[50], searchSpecies[50];
 	
-	
-	
-	Animal * newTab;
 
+	Animal * newTab = NULL;
 	newTab = malloc (sizeof (Animal)*MAX_ANIMALS);
 	
 	if (newTab == NULL){
 		printf ("erreur alloc memoire");
 		exit(1);
-		
 	}
 	
 	printf ("Rechercher un animal en fonction de :\n");
@@ -116,11 +108,11 @@ Animal * search (Animal * tab, int * count){
 	if (num ==1){
 		
 		printf ("nom recherche (majuscule au debut) : ");
-		scanf ("%s", nomRecherche);
+		scanf ("%s", searchName);
 		printf ("\n");
 		
 		for (int i = 0; i<MAX_ANIMALS; i++){
-			if (strcmp(tab[i].name, nomRecherche) == 0 ){
+			if (strcmp(tab[i].name, searchName) == 0 ){
 				
 				newTab[*count].id = tab[i].id;
 				strcpy (newTab[*count].name, tab[i].name);
@@ -142,10 +134,10 @@ Animal * search (Animal * tab, int * count){
 	if (num ==2){
 		
 		printf ("espece recherchee : ");
-		scanf ("%s", especeRecherche);
+		scanf ("%s", searchSpecies);
 		
 		for (int i = 0; i<MAX_ANIMALS; i++){
-			if (strcmp(tab[i].species, especeRecherche) == 0 ){
+			if (strcmp(tab[i].species, searchSpecies) == 0 ){
 				
 				newTab[*count].id = tab[i].id;
 				strcpy (newTab[*count].name, tab[i].name);
@@ -171,33 +163,33 @@ Animal * search (Animal * tab, int * count){
 		printf ("1-(jeune) age inferieur a :\n");
 		printf ("2-(vieux) age superieur a :\n");
 		
-		test = scanf("%d", &choix);
+		test = scanf("%d", &choice);
 
-		if (test != 1 || choix < 1 || choix > 2) {
+		if (test != 1 || choice < 1 || choice > 2) {
 			printf("Numero invalide\n");
 
 			while (getchar() != '\n');					//clean input buffer to avoid infinite loop
 		}
-	} while (test != 1 || choix < 1 || choix > 2);
+	} while (test != 1 || choice < 1 || choice > 2);
 		
 		
-		if (choix == 1){
+		if (choice == 1){
 			
 			do {
 			
 			printf ("vous recherchez un age inferieur a :\n");
 		
-			test = scanf("%d", &ageRecherche);
+			test = scanf("%d", &searchAge);
 
-			if (test != 1 || ageRecherche < 0 || ageRecherche > 50) {
+			if (test != 1 || searchAge < 0 || searchAge > 50) {
 				printf("Age invalide\n");
 
 				while (getchar() != '\n');					//clean input buffer to avoid infinite loop
 			}
-			} while (test != 1 || ageRecherche < 0 || ageRecherche > 50);
+			} while (test != 1 || searchAge < 0 || searchAge > 50);
 			
 			for (int i = 0; i<MAX_ANIMALS; i++){
-				if (tab[i].age <= ageRecherche && tab[i].age>0){
+				if (tab[i].age <= searchAge && tab[i].age>0){
 					
 					newTab[*count].id = tab[i].id;
 					strcpy (newTab[*count].name, tab[i].name);
@@ -214,22 +206,22 @@ Animal * search (Animal * tab, int * count){
 		}			
 		
 		
-		if (choix == 2){
+		if (choice == 2){
 			
 			do {
 			
 			printf ("vous recherchez un age superieur a :\n");
-			test = scanf("%d", &ageRecherche);
+			test = scanf("%d", &searchAge);
 
-			if (test != 1 || ageRecherche < 0 || ageRecherche > 50) {
+			if (test != 1 || searchAge < 0 || searchAge > 50) {
 				printf("Age invalide\n");
 
 				while (getchar() != '\n');					//clean input buffer to avoid infinite loop
 			}
-			} while (test != 1 || ageRecherche < 0 || ageRecherche > 50);
+			} while (test != 1 || searchAge < 0 || searchAge > 50);
 			
 			for (int i = 0; i<MAX_ANIMALS; i++){
-				if (tab[i].age >= ageRecherche && tab[i].age<50 ){
+				if (tab[i].age >= searchAge && tab[i].age<50 ){
 					
 					
 					newTab[*count].id = tab[i].id;
