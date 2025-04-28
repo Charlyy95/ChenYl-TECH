@@ -3,12 +3,12 @@
 #include "day_clean.h"
 
 int main() {
-    Animal shelter[MAX_ANIMALS];
+    
     int animal_count = 0;
     int choice;
 	int verif = 0;
 	
-	int nbAnimals = MAX_ANIMALS;
+	int nbAnimals = 0;
 	int * pAnimals;
 	pAnimals = &nbAnimals;
 	
@@ -40,14 +40,23 @@ int main() {
         
         switch (choice) {
             case 1 :
-                if (!addAnimal(shelter, &animal_count)) {
+                if (!addAnimal(tabAnimal, &animal_count)) {
                     printf("Failed to add animal!\n");
                 }
                 break;
 				
-			case 2 :
-               //delete animal
+		case 2: {
+                if (*pAnimals== 0) {
+                    printf("Aucun animal à supprimer.\n");
+                    break;
+                }
+
+                int id = askAnimal(tabAnimal, *pAnimals); 
+                deleteAnimalByID(tabAnimal, pAnimals, id); 
+                 tabAnimal = fillTable(pAnimals);
                 break;
+            }
+                
 				
             case 3: {
 				

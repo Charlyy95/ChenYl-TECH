@@ -28,7 +28,9 @@ typedef struct {
 
 // Function prototypes
 bool saveAnimalToFile(const Animal *animal);
-int addAnimal(Animal animals[], int *count);
+int addAnimal(Animal *tabAnimal, int *count);
+int askAnimal(Animal *tab, int size);
+void deleteAnimalByID(Animal *tab, int *size, int idSearch);
 
 #endif // ANIMAL_H
 
