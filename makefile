@@ -19,3 +19,13 @@ $(PROG): $(SRC) animal.h fillTable.h day_clean.h						#all file.h
 
 clean: 
 	rm -f $(PROG)
+
+
+#if (*p == 0) { // if no animal found, no further search
+                        printf("Aucun resultat trouve. Vous ne pouvez pas pousser la recherche.\n");
+                        break;
+                    }
+                    else if (*p == 1) { // if 1 animal found, no further search
+                        printf("Un seul animal existant. Vous ne pouvez pas pousser la recherche.\n");
+                        break;
+                    }
