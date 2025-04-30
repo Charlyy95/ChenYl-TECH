@@ -24,7 +24,6 @@ int main() {
         printf("4. Display all animals\n");
 		printf("5. Weekly cleaning time\n");
         printf("6. Exit\n");
-        printf("Choice: ");
 		
         do {
 			printf("Entrer le numero souhaite : ");
@@ -33,7 +32,7 @@ int main() {
 			if (verif != 1 || choice < 1 || choice > 6) {
 				printf("Numero invalide\n");
 
-				while (getchar() != '\n');							//clean input buffer to avoid infinite loop
+				clean_buffer();
 			}
 		} while (verif != 1 || choice < 1 || choice > 6);
         
@@ -53,7 +52,7 @@ int main() {
 
                 int id = askAnimal(tabAnimal, *pAnimals); 
                 deleteAnimalByID(tabAnimal, pAnimals, id); 
-                 tabAnimal = fillTable(pAnimals);
+                tabAnimal = fillTable(pAnimals);
                 break;
             }
                 
@@ -70,13 +69,17 @@ int main() {
 				int *p;
 				p = &nbElement;
 				
-				res = search(tabAnimal, p);							//first search
+				res = search(tabAnimal, p, pAnimals);			//first search
 				
 				do {
 				
 					
-					if (*p <= 1 ) {									// if 1 or 0 animal is found, no further search
+					if (*p == 0 ){				// if 1 or 0 animal is found, no further search
 							printf("Aucun resultat trouve. Vous ne pouvez pas pousser la recherche.\n");
+							break;
+					}
+					else if (*p == 1 ){
+							printf("Un seul animal trouve. Vous ne pouvez pas pousser la recherche.\n");
 							break;
 					}
 					
@@ -90,14 +93,14 @@ int main() {
 						
 						if (test != 1 || verif < 1 || verif > 2) {
 							printf("Numéro invalide\n");
-							while (getchar() != '\n'); 				//clean buffer 
+							clean_buffer();
 						}
 					} while (test != 1 || verif < 1 || verif > 2);
 
 					
-					if (verif == 1) {								// we continue the search
+					if (verif == 1) {			//continue to search
 						*p = 0;
-						newRes = search(res, p);
+						newRes = search(res, p, pAnimals);
 						free(res);
 						res = newRes;
 					}
