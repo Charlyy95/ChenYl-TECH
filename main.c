@@ -73,13 +73,7 @@ int main() {
 				
 				do {
 				
-					
-					if (*p == 0 ){				// if 1 or 0 animal is found, no further search
-							printf("Aucun resultat trouve. Vous ne pouvez pas pousser la recherche.\n");
-							break;
-					}
-					else if (*p == 1 ){
-							printf("Un seul animal trouve. Vous ne pouvez pas pousser la recherche.\n");
+					if (*p <= 1 ){		// if 1 or 0 animal is found, no further search
 							break;
 					}
 					
@@ -107,7 +101,6 @@ int main() {
 
 				} while (verif == 1);
 				
-				printf ("fin de la recherche.\n");
 				free (res);
 				
 				break;

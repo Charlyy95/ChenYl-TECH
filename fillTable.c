@@ -5,6 +5,41 @@ void clean_buffer(){
 
 	while (getchar() != '\n');					//clean input buffer to avoid infinite loop for scanf
 	}
+	
+void singularPlural(int *count){
+	if (*count <= 1){
+		printf ("%d animal matches this search\n", *count);
+		printf ("You can't search more, end of search.\n");
+	}
+	else{
+		printf ("%d animals match this search\n\n", *count);
+	}
+}
+void convert_weight (float weight){
+	float weight_gram = weight * 1000;
+    int test_int;
+	
+    if (weight_gram < 1000) {
+        //display g
+        test_int = (int)weight_gram == weight_gram;
+
+        if (test_int) {
+            printf("Weight  : %.0f g\n", weight_gram);
+        } else {
+            printf("Weight  : %.2f g\n", weight_gram);
+        }
+    }
+	else {
+        // display kg
+        test_int = (int)weight == weight;
+
+        if (test_int) {
+            printf("Weight  : %.0f kg\n", weight);
+        } else {
+            printf("Weight  : %.2f kg\n", weight);
+        }
+    }
+}
 
 void displayAnimal (Animal * tab, int * c){
 	printf ("Animal n%d :\n\n", (*c+1)); 
@@ -12,7 +47,7 @@ void displayAnimal (Animal * tab, int * c){
 	printf ("Name    : %s\n", tab[*c].name);
 	printf ("Species : %s\n", tab[*c].species);
 	printf ("Age     : %d\n", tab[*c].age);
-	printf ("Weight  : %.2f kg\n", tab[*c].weight);
+	convert_weight (tab[*c].weight);	
 	printf ("Comment : %s\n\n", tab[*c].comment);
 		
 }
@@ -37,6 +72,16 @@ void saveAnimal (Animal * tab, Animal * newTab, int i, int *count){
 	(*count)++;
 }
 
+int calculateAge(int yearBirth){
+	
+	time_t t = time(NULL);			//recup actual time
+	struct tm ActualDate = *localtime (&t);		//currrent year in ActualDate.tm_year 
+	
+	int current_year = ActualDate.tm_year + 1900;		//tm_year gives the number of years since 1900.
+	
+	int age = current_year - yearBirth;
+	return age;
+}
 
 Animal *fillTable (int * nbAnimals){	
 	
@@ -73,6 +118,7 @@ Animal *fillTable (int * nbAnimals){
 		tab[*nbAnimals].species[strcspn(tab[*nbAnimals].species, "\n")] = '\0';
 		
 		fscanf (f, "%d", &tab[*nbAnimals].age);
+		tab[*nbAnimals].age = calculateAge(tab[*nbAnimals].age);			// convert a date into an age
 		fgetc(f);
 		fscanf (f, "%f", &tab[*nbAnimals].weight);
 		fgetc(f);
@@ -134,7 +180,7 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 				saveAnimal (tab, newTab, i, count);				
 			}
 		}
-		printf ("%d animaux correspondent a cette recherche.\n\n", *count);
+		singularPlural(count);
 		
 	}
 	
@@ -149,7 +195,7 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 				saveAnimal (tab, newTab, i, count);
 			}
 		}
-		printf ("%d animaux correspondent a cette recherche.\n\n", *count);
+		singularPlural(count);
 	}
 	
 	if (num ==3){
@@ -191,7 +237,7 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 					saveAnimal (tab, newTab, i, count);
 				}
 			}
-			printf ("%d animaux correspondent a cette recherche.\n\n", *count);
+			singularPlural(count);
 		}			
 		
 		
@@ -215,7 +261,7 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 					saveAnimal (tab, newTab, i, count);
 				}
 			}
-			printf ("%d animaux correspondent a cette recherche.\n\n", *count);
+			singularPlural(count);
 		}
 				
 	}
