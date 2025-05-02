@@ -1,6 +1,7 @@
 #include "animal.h"
 #include "fillTable.h"
 #include "day_clean.h"
+#include "inventory.h"
 
 int main() {
     
@@ -22,19 +23,21 @@ int main() {
         printf("2. Delete animal\n");
         printf("3. Search animal\n");
         printf("4. Display all animals\n");
-		printf("5. Weekly cleaning time\n");
-        printf("6. Exit\n");
+		printf("5. Species inventory\n");
+		printf("6. Age inventory\n");
+		printf("7. Weekly cleaning time\n");
+        printf("8. Exit\n");
 		
         do {
-			printf("Entrer le numero souhaite : ");
+			printf("Entrer le numero souhaite :\n");
 			verif = scanf("%d", &choice);
 
-			if (verif != 1 || choice < 1 || choice > 6) {
+			if (verif != 1 || choice < 1 || choice > 8) {
 				printf("Numero invalide\n");
 
 				clean_buffer();
 			}
-		} while (verif != 1 || choice < 1 || choice > 6);
+		} while (verif != 1 || choice < 1 || choice > 8);
         
         
         switch (choice) {
@@ -111,10 +114,18 @@ int main() {
                 break;
 				
 			case 5 :
+                species_inventory(tabAnimal, pAnimals);
+                break;
+				
+			case 6 :
+                age_inventory(tabAnimal, pAnimals);
+                break;
+				
+			case 7 :
                 day_clean (tabAnimal);
                 break;
 				
-			case 6 :	
+			case 8 :	
                 printf("Exiting...\n");
 				free (tabAnimal);
                 return 0;
