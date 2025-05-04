@@ -1,7 +1,10 @@
 #include "animal.h"
 
 
-
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
 
 int addAnimal(Animal animals[], int *count) {
     if (*count >= MAX_ANIMALS) {
@@ -15,7 +18,7 @@ int addAnimal(Animal animals[], int *count) {
     // Collect animal data
     printf("\n=== Adding Animal ID: %d ===\n", newAnimal.id);
     
- 
+    clearInputBuffer();
     
     //// Get animal name (with newline handling)
     printf("Name: ");
@@ -31,7 +34,7 @@ int addAnimal(Animal animals[], int *count) {
     printf("Age (years): ");
     while (scanf("%d", &newAnimal.age) != 1 || newAnimal.age < 0) {
         printf("Invalid input. Please enter a positive number: ");
-        while (getchar() != '\n'); // Clear input buffer
+        clearInputBuffer();
     }
     getchar(); // Consume the leftover newline character
 
@@ -39,7 +42,7 @@ int addAnimal(Animal animals[], int *count) {
     printf("Weight (kg): ");
     while (scanf("%f", &newAnimal.weight) != 1 || newAnimal.weight <= 0) {
         printf("Invalid input. Please enter a positive number: ");
-        while (getchar() != '\n'); // Clear input buffer
+        clearInputBuffer();
     }
     getchar(); // Consume the leftover newline character
 
