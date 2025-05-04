@@ -31,7 +31,7 @@ bool saveAnimalToFile(const Animal *animal);
 int addAnimal(Animal *tabAnimal, int *count);
 int askAnimal(Animal *tab, int size);
 void deleteAnimalByID(Animal *tab, int *size, int idSearch);
-
+void clearInputBuffer();
 #endif // ANIMAL_H
 
 
