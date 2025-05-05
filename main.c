@@ -37,15 +37,14 @@ int main() {
     printf("\x1b[48;5;0m"); // Fond noir
     printf("\x1b[2J"); // Efface pour appliquer le fond
     printf("\x1b[37m"); // Texte blanc
-    printf("=== ChenYI-Tech Animal Shelter ===\n");
     
     Animal *tabAnimal = fillTable(pAnimals);
-    
     while (1) {
         printf("\x1b[2J\x1b[H"); // Efface l'écran
         printf("\x1b[48;5;0m"); // Fond noir
         printf("\x1b[2J"); // Efface pour appliquer le fond
         printf("\x1b[37m"); // Texte blanc
+        
         printf("\n🐾 Main Menu 🐾\n");
         printf("1. Add animal 🐶\n");
         printf("2. Delete animal 🗑️\n");
@@ -87,12 +86,14 @@ int main() {
                 printf("🗑️ === Suppression d'un animal ===\n");
                 if (*pAnimals == 0) {
                     printf("⚠️ Aucun animal à supprimer.\n");
+                    clean_buffer();
                 } else {
                     int id = askAnimal(tabAnimal, *pAnimals);
                     deleteAnimalByID(tabAnimal, pAnimals, id);
                     printf("✅ Animal supprimé.\n");
                     tabAnimal = fillTable(pAnimals);
                 }
+                
                 break;
                 
             case 3:
@@ -138,6 +139,7 @@ int main() {
                     free(res);
                     printf("✅ Recherche terminée.\n");
                 }
+                clean_buffer();
                 break;
                 
             case 4:
@@ -147,6 +149,7 @@ int main() {
                 printf("📋 === Affichage de tous les animaux ===\n");
                 displayAllAnimals(tabAnimal, pAnimals);
                 printf("✅ Affichage terminé.\n");
+                 clean_buffer();
                 break;
                 
             case 5:
@@ -156,6 +159,7 @@ int main() {
                 printf("🐾 === Inventaire des espèces ===\n");
                 species_inventory(tabAnimal, pAnimals);
                 printf("✅ Inventaire des espèces terminé.\n");
+                clean_buffer();
                 break;
                 
             case 6:
@@ -165,6 +169,7 @@ int main() {
                 printf("🎂 === Inventaire des âges ===\n");
                 age_inventory(tabAnimal, pAnimals);
                 printf("✅ Inventaire des âges terminé.\n");
+                clean_buffer();
                 break;
                 
             case 7:
@@ -174,6 +179,7 @@ int main() {
                 printf("🧹 === Temps de nettoyage hebdomadaire ===\n");
                 day_clean(tabAnimal);
                 printf("✅ Calcul du temps de nettoyage terminé.\n");
+                 clean_buffer();
                 break;
                 
             case 8:
@@ -184,6 +190,7 @@ int main() {
                 printf("Merci d'avoir utilisé ChenYI Animal Shelter Simulator ! 🐾\n");
                 printf("\x1b[0m"); // Réinitialiser les couleurs
                 free(tabAnimal);
+                 clean_buffer();
                 return 0;
                 
             default:
@@ -195,6 +202,6 @@ int main() {
         printf("\x1b[0m"); // Réinitialiser les couleurs
         printf("\nAppuyez sur Entrée pour continuer...");
         getchar();
-        clean_buffer();
+        
     }
 }
