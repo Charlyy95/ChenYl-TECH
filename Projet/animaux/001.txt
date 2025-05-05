@@ -1,6 +1,0 @@
-ID: 1
-Name: charly
-Species: cat
-Age: 2001
-Weight: 21.00
-Comment: gentil
