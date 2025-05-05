@@ -17,9 +17,9 @@ void speciesInsertionSort(SpeciesCount *tab, int n){
     }
 }
 
-void ageInsertionSort(int *tab, int *pAnimals){
+void ageInsertionSort(int *tab, int size){
 	
-	for (int i = 1; i < *pAnimals; i++) {
+	for (int i = 1; i < size; i++) {
         int key = tab[i];		//key is the element compared to the others
         int j = i - 1;
 		
@@ -39,6 +39,10 @@ void species_inventory(Animal *tab, int *pAnimals) {
 	int dog_count = 0;
 	int other_count = 0;
 	
+	if (*pAnimals == 0){
+		printf ("aucun animal dans le chenil\n");
+		return;
+	}
 	for (int i = 0; i< *pAnimals; i++){
 		if (strcmp(tab[i].species,"hamster")==0){
 			hamster_count+=1;
@@ -82,11 +86,20 @@ void age_inventory (Animal*tab, int *pAnimals){
 	int quartile = *pAnimals /4;
 	newTab = malloc (sizeof (int) * (*pAnimals));
 	
-	for (int i = 0; i< *pAnimals; i++){
-		newTab[i] = tab[i].age;
+	if (*pAnimals == 0){
+			printf ("aucun animal dans le chenil\n");
+			return;
 	}
 	
-	ageInsertionSort (newTab, pAnimals);
+	for (int i = 0; i< *pAnimals; i++){
+		
+		newTab[i] = tab[i].age;
+		printf ("%d, ",newTab[i]);
+	}
+	
+	
+	
+	ageInsertionSort (newTab, *pAnimals);
 	
 	for (int i = 0; i < 4; i++) {
         int start = i * quartile;

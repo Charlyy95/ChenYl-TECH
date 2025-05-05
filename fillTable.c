@@ -54,7 +54,14 @@ void displayAnimal (Animal * tab, int * c){
 
 void displayAllAnimals (Animal * tab, int *nbAnimals){
 	
+	if (*nbAnimals == 0){
+			printf ("Aucun animal dans le chenil\n");
+		return;
+	}
+	
 	for (int i = 0; i<*nbAnimals; i++){
+		printf ("%d", *nbAnimals);
+		
 		displayAnimal (tab, &i);
 	}
 }
@@ -110,7 +117,8 @@ Animal *fillTable (int * nbAnimals){
 		}
 				
 		fscanf (f, "%d", &tab[*nbAnimals].id);
-		fgetc(f);												//clean '\n'
+		while (fgetc(f) != '\n' && !feof(f));
+														//clean '\n'
 		fgets  (tab[*nbAnimals].name, MAX_ANIMALS, f);
 		tab[*nbAnimals].name[strcspn(tab[*nbAnimals].name, "\n")] = '\0'; 		//clean '\n'
 
@@ -119,9 +127,10 @@ Animal *fillTable (int * nbAnimals){
 		
 		fscanf (f, "%d", &tab[*nbAnimals].age);
 		tab[*nbAnimals].age = calculateAge(tab[*nbAnimals].age);			// convert a date into an age
-		fgetc(f);
+		while (fgetc(f) != '\n' && !feof(f));
+		
 		fscanf (f, "%f", &tab[*nbAnimals].weight);
-		fgetc(f);
+		while (fgetc(f) != '\n' && !feof(f));
 		
 		fgets  (tab[*nbAnimals].comment, 100, f);
 		tab[*nbAnimals].comment[strcspn(tab[*nbAnimals].comment, "\n")] = '\0';
