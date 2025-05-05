@@ -144,6 +144,13 @@ int addAnimal(Animal animals[], int *count) {
                 if (i == len - 1) valid_name = 1; // Tout est valide
             }
         }
+        	// Met la première lettre en majuscule, le reste en minuscules
+	    if (strlen(newAnimal.name) > 0) {
+		    newAnimal.name[0] = toupper((unsigned char)newAnimal.name[0]);
+		
+		for (size_t i = 1; i < strlen(newAnimal.name); i++) {
+			newAnimal.name[i] = tolower((unsigned char)newAnimal.name[i]);
+    }
     } while (!valid_name);
     
 
