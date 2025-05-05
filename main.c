@@ -2,137 +2,199 @@
 #include "fillTable.h"
 #include "day_clean.h"
 #include "inventory.h"
+#include <unistd.h> // pour sleep/usleep
+#include <stdio.h>
+
+void showLogo() {
+    printf("\x1b[2J\x1b[H"); // Efface l'écran
+    printf("\x1b[48;5;0m"); // Fond noir
+    printf("\x1b[2J"); // Efface à nouveau pour appliquer le fond partout
+    printf("\x1b[37m"); // Texte blanc
+    printf("🌟 Bienvenue dans...\n\n");
+    usleep(500000);
+    printf("   ███████   ██   ██ ███████   ████       ██   ██        ██ ██\n");
+    usleep(300000);
+    printf("  ██         ██   ██ ██        ██  ██     ██     ██    ██   ██\n");
+    usleep(300000);
+    printf(" ██          ███████ ██████    ██    ██   ██   	    ██      ██\n");
+    usleep(300000);
+    printf(" ██          ██   ██ ██        ██      ██ ██        ██	    ██\n");
+    usleep(300000);
+    printf("   ███████   ██   ██ █████████ ██        ███        ██ 	    ██████████\n");
+    usleep(500000);
+    printf("\n                    🐾 ChenYI Animal Shelter Simulator 🐾\n");
+    sleep(2);
+}
 
 int main() {
-    
-    
     int choice;
-	int verif = 0;
-	
-	int nbAnimals = 0;
-	int * pAnimals;
-	pAnimals = &nbAnimals;
-	
-    printf("=== ChenYI-Tech Animal Shelter ===\n");
-	
-	Animal * tabAnimal = fillTable(pAnimals);			//à appeler a chaque ajout/suppr d'animaux
+    int verif = 0;
+    int nbAnimals = 0;
+    int *pAnimals = &nbAnimals;
     
-	while (1) {
-        printf("\nMain Menu:\n");
-        printf("1. Add animal\n");
-        printf("2. Delete animal\n");
-        printf("3. Search animal\n");
-        printf("4. Display all animals\n");
-		printf("5. Species inventory\n");
-		printf("6. Age inventory\n");
-		printf("7. Weekly cleaning time\n");
-        printf("8. Exit\n");
-		
+    showLogo();
+    printf("\x1b[2J\x1b[H"); // Efface l'écran
+    printf("\x1b[48;5;0m"); // Fond noir
+    printf("\x1b[2J"); // Efface pour appliquer le fond
+    printf("\x1b[37m"); // Texte blanc
+    printf("=== ChenYI-Tech Animal Shelter ===\n");
+    
+    Animal *tabAnimal = fillTable(pAnimals);
+    
+    while (1) {
+        printf("\x1b[2J\x1b[H"); // Efface l'écran
+        printf("\x1b[48;5;0m"); // Fond noir
+        printf("\x1b[2J"); // Efface pour appliquer le fond
+        printf("\x1b[37m"); // Texte blanc
+        printf("\n🐾 Main Menu 🐾\n");
+        printf("1. Add animal 🐶\n");
+        printf("2. Delete animal 🗑️\n");
+        printf("3. Search animal 🔍\n");
+        printf("4. Display all animals 📋\n");
+        printf("5. Species inventory 🐾\n");
+        printf("6. Age inventory 🎂\n");
+        printf("7. Weekly cleaning time 🧹\n");
+        printf("8. Exit 🚪\n");
+        
         do {
-			printf("Entrer le numero souhaite :\n");
-			verif = scanf("%d", &choice);
-
-			if (verif != 1 || choice < 1 || choice > 8) {
-				printf("Numero invalide\n");
-
-				clean_buffer();
-			}
-		} while (verif != 1 || choice < 1 || choice > 8);
+            printf("➡️ Entrer le numéro souhaité : ");
+            verif = scanf("%d", &choice);
+            if (verif != 1 || choice < 1 || choice > 8) {
+                printf("❌ Numéro invalide !\n");
+                clean_buffer();
+            }
+        } while (verif != 1 || choice < 1 || choice > 8);
         
-        
+        printf("\x1b[2J\x1b[H"); // Efface l'écran
         switch (choice) {
-            case 1 :
+            case 1:
+                printf("\x1b[48;5;232m"); // Fond gris très foncé
+                printf("\x1b[2J"); // Efface pour appliquer le fond
+                printf("\x1b[37m"); // Texte blanc
+                printf("🐶 === Ajout d'un animal ===\n");
                 if (!addAnimal(tabAnimal, pAnimals)) {
-                    printf("Failed to add animal!\n");
+                    printf("❌ Échec de l'ajout de l'animal !\n");
+                } else {
+                    printf("✅ Animal ajouté avec succès !\n");
                 }
-                
-                break;
-		tabAnimal = fillTable(pAnimals);	
-		case 2: {
-                if (*pAnimals== 0) {
-                    printf("Aucun animal à supprimer.\n");
-                    break;
-                }
-
-                int id = askAnimal(tabAnimal, *pAnimals); 
-                deleteAnimalByID(tabAnimal, pAnimals, id); 
                 tabAnimal = fillTable(pAnimals);
                 break;
-            }
                 
-				
-            case 3: {
-				
-				Animal * res = NULL;
-				Animal * newRes = NULL;
-				
-				int test = 0;
-				verif = 0;
-				
-				int nbElement = 0;
-				int *p;
-				p = &nbElement;
-				
-				res = search(tabAnimal, p, pAnimals);			//first search
-				
-				do {
-				
-					if (*p <= 1 ){		// if 1 or 0 animal is found, no further search
-							break;
-					}
-					
-					do {
-						printf("Pousser la recherche ?\n");
-						printf("1 - Oui\n");
-						printf("2 - Non\n");
-
-						test = scanf("%d", &verif);
-						printf ("\n");
-						
-						if (test != 1 || verif < 1 || verif > 2) {
-							printf("Numéro invalide\n");
-							clean_buffer();
-						}
-					} while (test != 1 || verif < 1 || verif > 2);
-
-					
-					if (verif == 1) {			//continue to search
-						*p = 0;
-						newRes = search(res, p, pAnimals);
-						free(res);
-						res = newRes;
-					}
-
-				} while (verif == 1);
-				
-				free (res);
-				
-				break;
-			}
-			
-			case 4 :
-                displayAllAnimals (tabAnimal, pAnimals);
+            case 2:
+                printf("\x1b[48;5;233m"); // Fond gris légèrement plus clair
+                printf("\x1b[2J");
+                printf("\x1b[37m");
+                printf("🗑️ === Suppression d'un animal ===\n");
+                if (*pAnimals == 0) {
+                    printf("⚠️ Aucun animal à supprimer.\n");
+                } else {
+                    int id = askAnimal(tabAnimal, *pAnimals);
+                    deleteAnimalByID(tabAnimal, pAnimals, id);
+                    printf("✅ Animal supprimé.\n");
+                    tabAnimal = fillTable(pAnimals);
+                }
                 break;
-				
-			case 5 :
+                
+            case 3:
+                printf("\x1b[48;5;234m"); // Fond gris moyen
+                printf("\x1b[2J");
+                printf("\x1b[37m");
+                printf("🔍 === Recherche d'animaux ===\n");
+                {
+                    Animal *res = NULL;
+                    Animal *newRes = NULL;
+                    int test = 0;
+                    int nbElement = 0;
+                    int *p = &nbElement;
+                    
+                    res = search(tabAnimal, p, pAnimals);
+                    
+                    do {
+                        if (*p <= 1) {
+                            break;
+                        }
+                        
+                        do {
+                            printf("🔎 Pousser la recherche ?\n");
+                            printf("1 - Oui\n");
+                            printf("2 - Non\n");
+                            test = scanf("%d", &verif);
+                            printf("\n");
+                            
+                            if (test != 1 || verif < 1 || verif > 2) {
+                                printf("❌ Numéro invalide !\n");
+                                clean_buffer();
+                            }
+                        } while (test != 1 || verif < 1 || verif > 2);
+                        
+                        if (verif == 1) {
+                            *p = 0;
+                            newRes = search(res, p, pAnimals);
+                            free(res);
+                            res = newRes;
+                        }
+                    } while (verif == 1);
+                    
+                    free(res);
+                    printf("✅ Recherche terminée.\n");
+                }
+                break;
+                
+            case 4:
+                printf("\x1b[48;5;235m"); // Fond gris un peu plus clair
+                printf("\x1b[2J");
+                printf("\x1b[37m");
+                printf("📋 === Affichage de tous les animaux ===\n");
+                displayAllAnimals(tabAnimal, pAnimals);
+                printf("✅ Affichage terminé.\n");
+                break;
+                
+            case 5:
+                printf("\x1b[48;5;236m"); // Fond gris moyen-clair
+                printf("\x1b[2J");
+                printf("\x1b[37m");
+                printf("🐾 === Inventaire des espèces ===\n");
                 species_inventory(tabAnimal, pAnimals);
+                printf("✅ Inventaire des espèces terminé.\n");
                 break;
-				
-			case 6 :
+                
+            case 6:
+                printf("\x1b[48;5;237m"); // Fond gris clair
+                printf("\x1b[2J");
+                printf("\x1b[37m");
+                printf("🎂 === Inventaire des âges ===\n");
                 age_inventory(tabAnimal, pAnimals);
+                printf("✅ Inventaire des âges terminé.\n");
                 break;
-				
-			case 7 :
-                day_clean (tabAnimal);
+                
+            case 7:
+                printf("\x1b[48;5;238m"); // Fond gris plus clair
+                printf("\x1b[2J");
+                printf("\x1b[37m");
+                printf("🧹 === Temps de nettoyage hebdomadaire ===\n");
+                day_clean(tabAnimal);
+                printf("✅ Calcul du temps de nettoyage terminé.\n");
                 break;
-				
-			case 8 :	
-                printf("Exiting...\n");
-				free (tabAnimal);
+                
+            case 8:
+                printf("\x1b[48;5;0m"); // Fond noir
+                printf("\x1b[2J");
+                printf("\x1b[37m");
+                printf("🚪 === Fermeture du refuge ===\n");
+                printf("Merci d'avoir utilisé ChenYI Animal Shelter Simulator ! 🐾\n");
+                printf("\x1b[0m"); // Réinitialiser les couleurs
+                free(tabAnimal);
                 return 0;
-				
+                
             default:
-                printf("Invalid choice!\n");
+                printf("\x1b[48;5;0m"); // Fond noir
+                printf("\x1b[2J");
+                printf("\x1b[37m");
+                printf("❌ Choix invalide !\n");
         }
+        printf("\x1b[0m"); // Réinitialiser les couleurs
+        printf("\nAppuyez sur Entrée pour continuer...");
+        getchar();
+        clean_buffer();
     }
 }
