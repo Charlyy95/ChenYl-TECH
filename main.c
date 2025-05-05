@@ -5,7 +5,7 @@
 
 int main() {
     
-    int animal_count = 0;
+    
     int choice;
 	int verif = 0;
 	
@@ -42,11 +42,12 @@ int main() {
         
         switch (choice) {
             case 1 :
-                if (!addAnimal(tabAnimal, &animal_count)) {
+                if (!addAnimal(tabAnimal, pAnimals)) {
                     printf("Failed to add animal!\n");
                 }
+                
                 break;
-				
+		tabAnimal = fillTable(pAnimals);	
 		case 2: {
                 if (*pAnimals== 0) {
                     printf("Aucun animal à supprimer.\n");
