@@ -8,7 +8,7 @@
 #include <stdbool.h>  // Boolean data type
 #include <time.h>     // Time functions for random seed
 #include <sys/stat.h> // Directory creation (mkdir)
-
+#include <ctype.h>
 // Constants for animal data limits
 #define MAX_NAME_LEN 50       // Maximum length for animal names
 #define MAX_SPECIES_LEN 20    // Maximum length for species names
@@ -32,6 +32,9 @@ int addAnimal(Animal *tabAnimal, int *count);
 int askAnimal(Animal *tab, int size);
 void deleteAnimalByID(Animal *tab, int *size, int idSearch);
 void clearInputBuffer();
+void normalizeSpecies(char* species);
+int isValidSpecies(const char* species);
+int findAvailableId(Animal animals[], int count);
 #endif // ANIMAL_H
 
 

@@ -1,5 +1,27 @@
 #include "animal.h"
 
+int findAvailableId(Animal animals[], int count) {
+    // Vérifie les trous dans la séquence d'IDs
+    for (int id = 1; id <= MAX_ANIMALS; id++) {
+        bool idUsed = false;
+        for (int i = 0; i < count; i++) {
+            if (animals[i].id == id) {
+                idUsed = true;
+                break;
+            }
+        }
+        if (!idUsed) {
+            return id;
+        }
+    }
+    
+    // Si aucun trou trouvé et capacité max non atteinte
+    if (count < MAX_ANIMALS) {
+        return count + 1;
+    }
+    
+    return -1; // Aucun ID disponible
+}
 
 
 bool saveAnimalToFile(const Animal *animal) {
