@@ -60,8 +60,6 @@ void displayAllAnimals (Animal * tab, int *nbAnimals){
 	}
 	
 	for (int i = 0; i<*nbAnimals; i++){
-		printf ("%d", *nbAnimals);
-		
 		displayAnimal (tab, &i);
 	}
 }
@@ -140,7 +138,7 @@ Animal *fillTable (int * nbAnimals){
 	}
 	
 	printf ("\n%d animals in the shelter\n\n", *nbAnimals);
-	
+
 	return tab;
 }
 
@@ -179,13 +177,21 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 	
 	if (num ==1){
 		
-		printf ("nom recherche (majuscule au debut) : ");
+		printf ("nom recherche : ");
 		scanf ("%s", searchName);
 		printf ("\n");
 		
+		if (searchName[0]) {
+        		searchName[0] = toupper(searchName[0]); // Majuscule pour la première lettre
+   		}
+   		
+   		for (int i = 1; searchName[i]; i++) {
+       			searchName[i] = tolower(searchName[i]); // Minuscule pour le reste
+   		}
+		
+		
 		for (int i = 0; i<*pAnimals; i++){
 			if (strcmp(tab[i].name, searchName) == 0 ){
-				
 				saveAnimal (tab, newTab, i, count);				
 			}
 		}
