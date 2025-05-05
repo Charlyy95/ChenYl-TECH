@@ -94,7 +94,6 @@ void age_inventory (Animal*tab, int *pAnimals){
 	for (int i = 0; i< *pAnimals; i++){
 		
 		newTab[i] = tab[i].age;
-		printf ("%d, ",newTab[i]);
 	}
 	
 	
