@@ -1,7 +1,7 @@
 #include "animal.h"
 #include "add-delete.h"
 
-int findAvailableId(Animal animals[], int count) {
+int findAvailableId(Animal animals[], int count){
     // Vérifie les trous dans la séquence d'IDs
     for (int id = 1; id <= MAX_ANIMALS; id++) {
         bool idUsed = false;

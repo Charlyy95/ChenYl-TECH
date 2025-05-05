@@ -12,7 +12,7 @@ all: $(PROG)
 
 #Compilation du programme
 
-$(PROG): $(SRC) animal.h fillTable.h day_clean.h inventory.h add-delete.h					#all file.h
+$(PROG): $(SRC) animal.h fillTable.h day_clean.h add-delete.h inventory.h						#all file.h
 	gcc -Wall -o $(PROG) $(SRC)
 
 #Nettoyage

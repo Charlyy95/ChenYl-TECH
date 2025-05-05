@@ -1,5 +1,6 @@
 #include "animal.h"
 #include "add-delete.h"
+
 int askAnimal(Animal *tab, int size) {
     int id;
     int exist = 0;
@@ -37,7 +38,11 @@ int askAnimal(Animal *tab, int size) {
 
 //il faut la size du tableau l'identifiant de l'animal et le tableau de structure cette fonction retourne le tableau mis à jour
 void deleteAnimalByID(Animal *tab, int *size, int idSearch) {
-   
+   if (tab == NULL || size == NULL) {
+    fprintf(stderr, "Paramètre invalide passé à deleteAnimalByID\n");
+    return;
+}
+
     int exist = 0;
     for (int i = 0; i < *size; i++) {
         if ((tab + i)->id == idSearch) {

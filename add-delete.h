@@ -1,5 +1,5 @@
-#ifndef ADD-DELETE_H
-#define ADD-DELETE_H
+#ifndef ADD_DELETE_H
+#define ADD_DELETE_H
 
 // System includes needed for file operations and directory creation
 

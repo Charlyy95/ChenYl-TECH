@@ -3,7 +3,7 @@
 #include "day_clean.h"
 #include "inventory.h"
 #include <unistd.h> // pour sleep/usleep
-#include <stdio.h>
+#include "add-delete.h"
 
 void showLogo() {
     printf("\x1b[2J\x1b[H"); // Efface l'écran
