@@ -16,7 +16,7 @@ bool saveAnimalToFile(const Animal *animal) {
     if (!file) return false;
     
     // Écrit les données
-    fprintf(file, "ID: %d\nName: %s\nSpecies: %s\nAge: %d\nWeight: %.2f\nComment: %s\n",
+    fprintf(file, "%d\nName: %s\n%s\n%d\n%.2f\n%s\n",
             animal->id,
             animal->name,
             animal->species,
