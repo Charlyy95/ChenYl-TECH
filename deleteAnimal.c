@@ -1,4 +1,5 @@
 #include "animal.h"
+#include "add-delete.h"
 int askAnimal(Animal *tab, int size) {
     int id;
     int exist = 0;
