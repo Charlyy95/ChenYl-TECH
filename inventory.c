@@ -47,13 +47,13 @@ void species_inventory(Animal *tab, int *pAnimals) {
 		if (strcmp(tab[i].species,"hamster")==0){
 			hamster_count+=1;
 		}
-		else if (strcmp(tab[i].species,"chat")==0){
+		else if (strcmp(tab[i].species,"cat")==0){
 			cat_count+=1;
 		}
-		else if (strcmp(tab[i].species,"autruche")==0){
+		else if (strcmp(tab[i].species,"ostrich")==0){
 			ostrich_count+=1;
 		}
-		else if (strcmp(tab[i].species,"chien")==0){
+		else if (strcmp(tab[i].species,"dog")==0){
 			dog_count+=1;
 		}
 		else{
@@ -63,9 +63,9 @@ void species_inventory(Animal *tab, int *pAnimals) {
 	
 	SpeciesCount species_tab[] = {
     {"hamster ", hamster_count},
-    {"chat    ", cat_count},
-    {"autruche", ostrich_count},
-    {"chien   ", dog_count},
+    {"cat    ", cat_count},
+    {"ostrich", ostrich_count},
+    {"dog   ", dog_count},
     {"autre   ", other_count}
 	};
 	
