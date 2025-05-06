@@ -14,7 +14,9 @@ Everything you need to manage the shelter :
 1- Add animal rescue by the shelter. 🐶
 
 2- Delete an animal who left the shelter. 🏡
+
 3- Search and display animals. 🔍
+
 4- Generate summaries by specific traits. 🐾
 
 ## 📌 Notes
