@@ -21,4 +21,5 @@ Everything you need to manage the shelter :
 
 ## 📌 Notes
 Written entirely in C.
+
 Lightweight and fast
