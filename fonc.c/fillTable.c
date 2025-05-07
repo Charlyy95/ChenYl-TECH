@@ -55,7 +55,7 @@ void displayAnimal (Animal * tab, int * c){
 void displayAllAnimals (Animal * tab, int *nbAnimals){
 	
 	if (*nbAnimals == 0){
-			printf ("Aucun animal dans le chenil\n");
+			printf ("No animal in the shelter\n");
 		return;
 	}
 	
@@ -98,7 +98,7 @@ Animal *fillTable (int * nbAnimals){
 	Animal *tab = malloc (sizeof(Animal) * MAX_ANIMALS);
 		
 		if (tab == NULL){
-			printf ("erreur alloc mémoire");
+			printf ("memory allocation error");
 			exit (1);	
 		}
 		
