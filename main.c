@@ -89,6 +89,11 @@ int main() {
                     clean_buffer();
                 } else {
                     int id = askAnimal(tabAnimal, *pAnimals);
+
+                    if (id == 0){
+						break;
+					}
+                    
                     deleteAnimalByID(tabAnimal, pAnimals, id);
                     printf("✅ Animal supprimé.\n");
                     tabAnimal = fillTable(pAnimals);
