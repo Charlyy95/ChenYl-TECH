@@ -6,8 +6,13 @@ int askAnimal(Animal *tab, int size) {
     int exist = 0;
    int result;
     do {
-        printf("Quel est l'identifiant de l'animal que vous souhaitez retirer ?\n");
+       printf("Quel est l'identifiant de l'animal que vous souhaitez retirer ?\n");
+        printf("Entrez 0 pour retourner au menu principal🔙.\n");
         result = scanf("%d", &id);
+		
+		if (id == 0){
+			break;
+		}
 
         while (getchar() != '\n'); // Vider le buffer
 
