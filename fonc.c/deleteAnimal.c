@@ -6,8 +6,8 @@ int askAnimal(Animal *tab, int size) {
     int exist = 0;
    int result;
     do {
-       printf("Quel est l'identifiant de l'animal que vous souhaitez retirer ?\n");
-        printf("Entrez 0 pour retourner au menu principal🔙.\n");
+       printf("What is the ID of the animal you want to remove?\n");
+        printf("Enter 0 to return to the main menu.🔙.\n");
         result = scanf("%d", &id);
 		
 		if (id == 0){
@@ -17,7 +17,7 @@ int askAnimal(Animal *tab, int size) {
         while (getchar() != '\n'); // Vider le buffer
 
         if (result != 1) {
-          printf("Entrée invalide. Veuillez entrer un entier.\n");
+          printf("Invalid input. Please enter an integer.\n");
           continue;
       }
 
@@ -30,7 +30,7 @@ int askAnimal(Animal *tab, int size) {
     }
 
     if (!exist) {
-        printf("Aucun animal avec l'identifiant %d. Réessayez.\n", id);
+        printf("No animal with ID %d. Please try again.\n", id);
     }
 
 } while (!exist);
@@ -44,7 +44,7 @@ int askAnimal(Animal *tab, int size) {
 //il faut la size du tableau l'identifiant de l'animal et le tableau de structure cette fonction retourne le tableau mis à jour
 void deleteAnimalByID(Animal *tab, int *size, int idSearch) {
    if (tab == NULL || size == NULL) {
-    fprintf(stderr, "Paramètre invalide passé à deleteAnimalByID\n");
+    fprintf(stderr, "Invalid parameter passed to deleteAnimalByID\n");
     return;
 }
 
@@ -57,7 +57,7 @@ void deleteAnimalByID(Animal *tab, int *size, int idSearch) {
     }
 
     if (!exist) {
-        printf("Aucun animal avec l'ID %d trouvé.\n", idSearch);
+        printf("No animal with ID %d found.\n", idSearch);
         return; // Pas besoin de exit(1) : on arrête juste la fonction
     }
 
@@ -66,10 +66,10 @@ void deleteAnimalByID(Animal *tab, int *size, int idSearch) {
 
 
     if (remove(nameFile) == 0) {
-        printf("Fichier '%s' supprimé avec succès.\n", nameFile);
+        printf("File '%s' successfully deleted.\n", nameFile);
       } 
     else {
-      perror("Erreur lors de la suppression du fichier");
+      perror("Error while deleting the file.");
 }
 
 }
