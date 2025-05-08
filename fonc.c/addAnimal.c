@@ -1,12 +1,19 @@
 #include "animal.h"
 #include "add-delete.h"
 
-
+/**
+ * Clears the input buffer
+ */
 void clearInputBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
+/**
+ * Checks if a species is valid
+ * @param species Species to check
+ * @return 1 if valid, 0 otherwise
+ */
 int isValidSpecies(const char* species) {
     const char *validSpecies[] = {"dog", "cat", "hamster", "ostrich"};
     for (size_t i = 0; i < sizeof(validSpecies)/sizeof(validSpecies[0]); i++) {
@@ -17,6 +24,10 @@ int isValidSpecies(const char* species) {
     return 0;
 }
 
+/**
+ * Normalizes a string (trim and lowercase)
+ * @param str String to normalize
+ */
 void normalizeString(char* str) {
     if (!str) return;
     
@@ -36,12 +47,21 @@ void normalizeString(char* str) {
     }
 }
 
+/**
+ * Normalizes species string (trim and lowercase)
+ * @param species Species string to normalize
+ */
 void normalizeSpecies(char* species) {
     normalizeString(species);
 }
 
-
-
+/**
+ * Gets and validates a string input
+ * @param prompt Message to display
+ * @param buffer Buffer to store input
+ * @param size Buffer size
+ * @return 1 if successful
+ */
 int getValidatedString(const char* prompt, char* buffer, size_t size) {
     while (1) {
         printf("%s", prompt);
@@ -69,6 +89,14 @@ int getValidatedString(const char* prompt, char* buffer, size_t size) {
     }
 }
 
+/**
+ * Gets and validates an integer input
+ * @param prompt Message to display
+ * @param value Pointer to store value
+ * @param min Minimum allowed value
+ * @param max Maximum allowed value
+ * @return 1 if successful
+ */
 int getValidatedInt(const char* prompt, int* value, int min, int max) {
     while (1) {
         printf("%s", prompt);
@@ -88,6 +116,14 @@ int getValidatedInt(const char* prompt, int* value, int min, int max) {
     }
 }
 
+/**
+ * Gets and validates a float input
+ * @param prompt Message to display
+ * @param value Pointer to store value
+ * @param min Minimum allowed value
+ * @param max Maximum allowed value
+ * @return 1 if successful
+ */
 int getValidatedFloat(const char* prompt, float* value, float min, float max) {
     while (1) {
         printf("%s", prompt);
@@ -107,9 +143,12 @@ int getValidatedFloat(const char* prompt, float* value, float min, float max) {
     }
 }
 
-
-
-
+/**
+ * Adds a new animal to the shelter
+ * @param animals Array of animals
+ * @param count Pointer to animal count
+ * @return ID of new animal if successful, 0 otherwise
+ */
 int addAnimal(Animal animals[], int *count) {
     if (*count >= MAX_ANIMALS) {
         printf("Shelter full (%d animals max).\n", MAX_ANIMALS);
@@ -122,14 +161,14 @@ int addAnimal(Animal animals[], int *count) {
     printf("\nAdding Animal ID: %d\n", newAnimal.id);
     clearInputBuffer();
 
-    // Saisie et validation du nom
+    // Validate and get name
     int valid_name = 0;
     do {
         printf("Name (letters only, 2-30 chars): ");
         if (fgets(newAnimal.name, sizeof(newAnimal.name), stdin)) {
             newAnimal.name[strcspn(newAnimal.name, "\n")] = '\0';
             
-            // Validation basique
+            // Basic validation
             size_t len = strlen(newAnimal.name);
             if (len < 2 || len > 30) {
                 printf("Name must be 2-30 characters.\n");
@@ -141,19 +180,18 @@ int addAnimal(Animal animals[], int *count) {
                     printf("Only letters and spaces allowed.\n");
                     break;
                 }
-                if (i == len - 1) valid_name = 1; // Tout est valide
+                if (i == len - 1) valid_name = 1; // All valid
             }
         }
-        	// Met la première lettre en majuscule, le reste en minuscules
-	if (strlen(newAnimal.name) > 0) {
-		newAnimal.name[0] = toupper((unsigned char)newAnimal.name[0]);
-	}
-	for (size_t i = 1; i < strlen(newAnimal.name); i++) {
-			newAnimal.name[i] = tolower((unsigned char)newAnimal.name[i]);
-    	}
-    		
+        
+        // Capitalize first letter, lowercase the rest
+        if (strlen(newAnimal.name) > 0) {
+            newAnimal.name[0] = toupper((unsigned char)newAnimal.name[0]);
+        }
+        for (size_t i = 1; i < strlen(newAnimal.name); i++) {
+            newAnimal.name[i] = tolower((unsigned char)newAnimal.name[i]);
+        }
     } while (!valid_name);
-    
 
     // Get species with validation
     do {
