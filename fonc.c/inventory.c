@@ -66,7 +66,7 @@ void species_inventory(Animal *tab, int *pAnimals) {
     {"cat    ", cat_count},
     {"ostrich", ostrich_count},
     {"dog   ", dog_count},
-    {"autre   ", other_count}
+    {"other   ", other_count}
 	};
 	
 	speciesInsertionSort(species_tab, TOTAL_SPECIES + 1);
