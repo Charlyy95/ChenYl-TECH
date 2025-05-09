@@ -55,7 +55,7 @@ void displayAnimal (Animal * tab, int * c){
 void displayAllAnimals (Animal * tab, int *nbAnimals){
 	
 	if (*nbAnimals == 0){
-			printf ("No animal in the shelter\n");
+		printf ("No animal in the shelter\n");
 		return;
 	}
 	
@@ -159,17 +159,17 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 		exit(1);
 	}
 	
-	printf ("Rechercher un animal en fonction de :\n");
-	printf ("1- Nom\n");
-	printf ("2- Espece\n");
+	printf ("search for an animal based on :\n");
+	printf ("1- Name\n");
+	printf ("2- Species\n");
 	printf ("3- Age\n\n");
 	
 	do {
-		printf("Entrer le numero souhaite : ");
+		printf("➡️ Enter your choice : ");
 		test = scanf("%d", &num);
 
 		if (test != 1 || num < 1 || num > 3) {
-			printf("Numero invalide\n");
+			printf("Invalid choice\n");
 
 			clean_buffer();
 		}
@@ -177,7 +177,7 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 	
 	if (num ==1){
 		
-		printf ("nom recherche : ");
+		printf ("name searched : ");
 		scanf ("%s", searchName);
 		printf ("\n");
 		
@@ -201,7 +201,7 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 	
 	if (num ==2){
 		
-		printf ("espece recherchee : ");
+		printf ("Species searched : ");
 		scanf ("%s", searchSpecies);
 		
 		for (int i = 0; i<*pAnimals; i++){
@@ -217,14 +217,15 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 		
 		do {
 		
-		printf ("Vous recherchez un animal :\n");
-		printf ("1-(jeune) age inferieur a :\n");
-		printf ("2-(vieux) age superieur a :\n");
+		printf("Search for an animal by age:\n");
+		printf("1 - Young (age below a certain value)\n");
+		printf("2 - Old   (age above a certain value)\n");
+
 		
 		test = scanf("%d", &choice);
 
 		if (test != 1 || choice < 1 || choice > 2) {
-			printf("Numero invalide\n");
+			printf("Invalide choice\n");
 
 			clean_buffer();
 		}
@@ -235,16 +236,16 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 			
 			do {
 			
-			printf ("vous recherchez un age inferieur a :\n");
+			printf("Enter the maximum age you're looking for:\n");
 		
 			test = scanf("%d", &searchAge);
 
-			if (test != 1 || searchAge < 0 || searchAge > 50) {
-				printf("Age invalide\n");
+			if (test != 1 || searchAge < 0 || searchAge > 100) {
+				printf("Invalid age\n");
 
 				clean_buffer();
 			}
-			} while (test != 1 || searchAge < 0 || searchAge > 50);
+			} while (test != 1 || searchAge < 0 || searchAge > 100);
 			
 			for (int i = 0; i<*pAnimals; i++){
 				if (tab[i].age <= searchAge && tab[i].age>0){
@@ -260,18 +261,18 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 			
 			do {
 			
-			printf ("vous recherchez un age superieur a :\n");
+			printf("Enter the minimum age you're looking for:\n");;
 			test = scanf("%d", &searchAge);
 
-			if (test != 1 || searchAge < 0 || searchAge > 50) {
-				printf("Age invalide\n");
+			if (test != 1 || searchAge < 0 || searchAge > 100) {
+				printf("Invalid age\n");
 
 				clean_buffer();
 			}
-			} while (test != 1 || searchAge < 0 || searchAge > 50);
+			} while (test != 1 || searchAge < 0 || searchAge > 100);
 			
 			for (int i = 0; i<*pAnimals; i++){
-				if (tab[i].age >= searchAge && tab[i].age<50 ){
+				if (tab[i].age >= searchAge && tab[i].age ){
 					
 					saveAnimal (tab, newTab, i, count);
 				}
