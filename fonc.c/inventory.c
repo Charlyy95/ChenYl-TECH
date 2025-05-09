@@ -40,10 +40,10 @@ void species_inventory(Animal *tab, int *pAnimals) {
 	int other_count = 0;
 	
 	if (*pAnimals == 0){
-		printf ("aucun animal dans le chenil\n");
+		printf ("No animal in the shelter\n");
 		return;
 	}
-	for (int i = 0; i< *pAnimals; i++){
+	for (int i = 0; i< *pAnimals; i++){			//count all species
 		if (strcmp(tab[i].species,"hamster")==0){
 			hamster_count+=1;
 		}
@@ -73,7 +73,7 @@ void species_inventory(Animal *tab, int *pAnimals) {
 	
 	printf ("In our shelter we have %d animals :\n\n", *pAnimals);
 	
-	for (int i = 0; i < TOTAL_SPECIES+1; i++) {
+	for (int i = 0; i < TOTAL_SPECIES+1; i++) {					//display all species in ascending order
 		printf("%s : %d\n", species_tab[i].species, species_tab[i].count);
 	}
 	
@@ -85,9 +85,13 @@ void age_inventory (Animal*tab, int *pAnimals){
 	int * newTab;
 	int quartile = *pAnimals /4;
 	newTab = malloc (sizeof (int) * (*pAnimals));
+	if (newTab == NULL) {
+   		printf("Error : memory allocation problem\n");
+   	exit(1);
+	}
 	
 	if (*pAnimals == 0){
-			printf ("aucun animal dans le chenil\n");
+			printf ("No animal in the shelter\n");
 			return;
 	}
 	
