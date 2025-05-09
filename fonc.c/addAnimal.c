@@ -148,7 +148,7 @@ int addAnimal(Animal animals[], int *count) {
    // Validate and get name
     int valid_name;
     do {
-		valid_name = 1;
+	valid_name = 1;
         printf("Name (letters only, 2-30 chars): ");
         if (fgets(newAnimal.name, sizeof(newAnimal.name), stdin)) {
             newAnimal.name[strcspn(newAnimal.name, "\n")] = '\0';
@@ -157,13 +157,13 @@ int addAnimal(Animal animals[], int *count) {
             size_t len = strlen(newAnimal.name);
             if (len < 2 || len > 30) {
                 printf("Name must be 2-30 characters.\n");
-				valid_name = 0;
+		valid_name = 0;
             }
             
             for (size_t i = 0; i < len; i++) {
                 if (!isalpha((unsigned char)newAnimal.name[i]) && newAnimal.name[i] != ' ') {
                     printf("Only letters and spaces allowed.\n");
-					valid_name = 0;
+		    valid_name = 0;
                     break;
                 }
             }
