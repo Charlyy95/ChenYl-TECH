@@ -7,7 +7,6 @@
 #include <stdlib.h>   // Memory allocation, system functions
 #include <string.h>   // String manipulation functions
 #include <stdbool.h>  // Boolean data type
-#include <time.h>     // Time functions for random seed
 #include <sys/stat.h> // Directory creation (mkdir)
 #include <ctype.h>    // Character handling functions
 #include <limits.h>   // For INT_MAX, etc.
