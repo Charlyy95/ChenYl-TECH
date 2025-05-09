@@ -11,8 +11,7 @@ void clearInputBuffer() {
 
 /**
  * Checks if a species is valid
- * @param species Species to check
- * @return 1 if valid, 0 otherwise
+ * return 1 if valid, 0 otherwise
  */
 int isValidSpecies(const char* species) {
     const char *validSpecies[] = {"dog", "cat", "hamster", "ostrich"};
@@ -26,7 +25,6 @@ int isValidSpecies(const char* species) {
 
 /**
  * Normalizes a string (trim and lowercase)
- * @param str String to normalize
  */
 void normalizeString(char* str) {
     if (!str) return;
@@ -49,7 +47,6 @@ void normalizeString(char* str) {
 
 /**
  * Normalizes species string (trim and lowercase)
- * @param species Species string to normalize
  */
 void normalizeSpecies(char* species) {
     normalizeString(species);
@@ -57,10 +54,7 @@ void normalizeSpecies(char* species) {
 
 /**
  * Gets and validates a string input
- * @param prompt Message to display
- * @param buffer Buffer to store input
- * @param size Buffer size
- * @return 1 if successful
+ * return 1 if successful
  */
 int getValidatedString(const char* prompt, char* buffer, size_t size) {
     while (1) {
@@ -91,11 +85,7 @@ int getValidatedString(const char* prompt, char* buffer, size_t size) {
 
 /**
  * Gets and validates an integer input
- * @param prompt Message to display
- * @param value Pointer to store value
- * @param min Minimum allowed value
- * @param max Maximum allowed value
- * @return 1 if successful
+ * return 1 if successful
  */
 int getValidatedInt(const char* prompt, int* value, int min, int max) {
     while (1) {
@@ -118,11 +108,7 @@ int getValidatedInt(const char* prompt, int* value, int min, int max) {
 
 /**
  * Gets and validates a float input
- * @param prompt Message to display
- * @param value Pointer to store value
- * @param min Minimum allowed value
- * @param max Maximum allowed value
- * @return 1 if successful
+ * return 1 if successful
  */
 int getValidatedFloat(const char* prompt, float* value, float min, float max) {
     while (1) {
@@ -145,9 +131,7 @@ int getValidatedFloat(const char* prompt, float* value, float min, float max) {
 
 /**
  * Adds a new animal to the shelter
- * @param animals Array of animals
- * @param count Pointer to animal count
- * @return ID of new animal if successful, 0 otherwise
+ * return ID of new animal if successful, 0 otherwise
  */
 int addAnimal(Animal animals[], int *count) {
     if (*count >= MAX_ANIMALS) {
