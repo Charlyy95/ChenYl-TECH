@@ -8,7 +8,7 @@ int askAnimal(Animal *tab, int size) {
     do {
        printf("What is the ID of the animal you want to remove?\n");
         printf("Enter 0 to return to the main menu.🔙.\n");
-        result = scanf("%d", &id);
+        result = scanf("%d", &id); //Stores 1 if a readable integer character is successfully read.
 		
 		if (id == 0){
 			break;
@@ -43,7 +43,7 @@ int askAnimal(Animal *tab, int size) {
 
 
 void deleteAnimalByID(Animal *tab, int *size, int idSearch) {
-   if (tab == NULL || size == NULL) {
+   if (tab == NULL || size == NULL) { // Check if the pointers are valid.
     fprintf(stderr, "Invalid parameter passed to deleteAnimalByID\n");
     return;
 }
@@ -58,7 +58,7 @@ void deleteAnimalByID(Animal *tab, int *size, int idSearch) {
 
     if (!exist) {
         printf("No animal with ID %d found.\n", idSearch);
-        return; // Don't need exit(1): we just stop the function.
+        return; 
     }
 
     char nameFile[100];
