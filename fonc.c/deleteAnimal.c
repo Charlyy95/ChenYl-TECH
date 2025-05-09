@@ -14,7 +14,7 @@ int askAnimal(Animal *tab, int size) {
 			break;
 		}
 
-        while (getchar() != '\n'); // Vider le buffer
+        while (getchar() != '\n'); // Clean buffer
 
         if (result != 1) {
           printf("Invalid input. Please enter an integer.\n");
@@ -41,7 +41,7 @@ int askAnimal(Animal *tab, int size) {
 
 
 
-//il faut la size du tableau l'identifiant de l'animal et le tableau de structure cette fonction retourne le tableau mis à jour
+
 void deleteAnimalByID(Animal *tab, int *size, int idSearch) {
    if (tab == NULL || size == NULL) {
     fprintf(stderr, "Invalid parameter passed to deleteAnimalByID\n");
@@ -58,7 +58,7 @@ void deleteAnimalByID(Animal *tab, int *size, int idSearch) {
 
     if (!exist) {
         printf("No animal with ID %d found.\n", idSearch);
-        return; // Pas besoin de exit(1) : on arrête juste la fonction
+        return; // Don't need exit(1): we just stop the function.
     }
 
     char nameFile[100];
