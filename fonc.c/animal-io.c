@@ -3,9 +3,7 @@
 
 /**
  * Finds the first available ID in the animal array
- * @param animals Array of animals
- * @param count Current number of animals
- * @return Available ID or -1 if no IDs available
+ * return Available ID or -1 if no IDs available
  */
 int findAvailableId(Animal animals[], int count) {
     // Check for gaps in ID sequence
@@ -32,8 +30,7 @@ int findAvailableId(Animal animals[], int count) {
 
 /**
  * Saves animal data to a file
- * @param animal Pointer to animal structure
- * @return true if successful, false otherwise
+ * return true if successful, false otherwise
  */
 bool saveAnimalToFile(const Animal *animal) {
     struct stat st;
