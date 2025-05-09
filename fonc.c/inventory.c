@@ -63,9 +63,9 @@ void species_inventory(Animal *tab, int *pAnimals) {
 	
 	SpeciesCount species_tab[] = {
     {"hamster ", hamster_count},
-    {"cat    ", cat_count},
-    {"ostrich", ostrich_count},
-    {"dog   ", dog_count},
+    {"cat     ", cat_count},
+    {"ostrich ", ostrich_count},
+    {"dog     ", dog_count},
     {"other   ", other_count}
 	};
 	
@@ -114,7 +114,7 @@ void age_inventory (Animal*tab, int *pAnimals){
 			end = (i + 1) * quartile - 1;
 		}
 	
-        printf("Quartile %d : %d animaux (%d a %d ans)\n", i + 1, end - start + 1, newTab[start], newTab[end]);
+        printf("Quartile %d : %d animals (aged %d to %d)\n", i + 1, end - start + 1, newTab[start], newTab[end]);
 	}
 	
 	free (newTab);
