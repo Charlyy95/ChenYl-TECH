@@ -25,7 +25,7 @@ int getValidatedInt(const char* prompt, int* value, int min, int max);
 int getValidatedFloat(const char* prompt, float* value, float min, float max);
 
 // String processing
-
+void normalizeString(char* str);
 void normalizeSpecies(char* species);
 int isValidSpecies(const char* species);
 
