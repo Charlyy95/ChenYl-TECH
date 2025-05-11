@@ -42,7 +42,7 @@ void convert_weight (float weight){
 }
 
 void displayAnimal (Animal * tab, int * c){
-	printf ("Animal n%d :\n\n", (*c+1)); 
+	printf ("Animal #%d :\n\n", (*c+1)); 
 	printf ("Id      : %d\n", tab[*c].id);
 	printf ("Name    : %s\n", tab[*c].name);
 	printf ("Species : %s\n", tab[*c].species);
@@ -109,14 +109,12 @@ Animal *fillTable (int * nbAnimals){
 		f = fopen(chain, "r");
 		
 		if (f == NULL){
-			//printf ("erreur ouverture fichier\n");
 			continue;											//prevents reading of non-existent files
-			//exit (1);
 		}
 				
 		fscanf (f, "%d", &tab[*nbAnimals].id);
 		while (fgetc(f) != '\n' && !feof(f));
-														//clean '\n'
+												//clean '\n'
 		fgets  (tab[*nbAnimals].name, MAX_ANIMALS, f);
 		tab[*nbAnimals].name[strcspn(tab[*nbAnimals].name, "\n")] = '\0'; 		//clean '\n'
 
@@ -155,7 +153,7 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 	newTab = malloc (sizeof (Animal)*(*pAnimals));
 	
 	if (newTab == NULL){
-		printf ("erreur alloc memoire");
+		printf ("memory allocation error");
 		exit(1);
 	}
 	
@@ -182,11 +180,11 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 		printf ("\n");
 		
 		if (searchName[0]) {
-        		searchName[0] = toupper(searchName[0]); // Majuscule pour la première lettre
+        		searchName[0] = toupper(searchName[0]); // capitalize first lettre
    		}
    		
    		for (int i = 1; searchName[i]; i++) {
-       			searchName[i] = tolower(searchName[i]); // Minuscule pour le reste
+       			searchName[i] = tolower(searchName[i]); // loweracse the rest
    		}
 		
 		
