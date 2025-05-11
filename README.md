@@ -7,6 +7,7 @@ It handles various animal species and stores their data in individual text files
 
 ## 🚀 How to Run
 To start the programme, you juste have to open command terminal, enter to the project file and to write "make" in the command terminal.
+
 When you start the program, there is a menu, enter the desired number to access each feature.
 
 ## 🧩 Program features
