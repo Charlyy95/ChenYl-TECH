@@ -8,7 +8,7 @@
 #define MAX_SPECIES_LEN 20    // Maximum length for species names
 #define MAX_COMMENT_LEN 100   // Maximum length for comments
 #define MAX_ANIMALS 50        // Maximum shelter capacity
-#define ANIMALS_DIR "animaux/" // Directory to store animal files
+#define ANIMALS_DIR "animaux" // Directory to store animal files
 
 // Validation constants
 #define MIN_AGE 1950
