@@ -2,8 +2,9 @@
 #include "fillTable.h"
 #include "day_clean.h"
 #include "inventory.h"
-#include <unistd.h> // for sleep/usleep
 #include "add-delete.h"
+#include <unistd.h> // for sleep/usleep
+
 
 void showLogo() {
     printf("\x1b[2J\x1b[H"); // Clear screen
