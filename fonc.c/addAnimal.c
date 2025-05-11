@@ -142,7 +142,7 @@ int addAnimal(Animal animals[], int *count) {
     Animal newAnimal = {0};
     newAnimal.id = findAvailableId(animals, *count);
     
-    if (newAnimal.id <= 0) {  // Bloque -1 et 0
+    if (newAnimal.id <= 0) {  // In case of -1 or 0
         printf("Error: No available ID.\n");
         return 0;
 }
