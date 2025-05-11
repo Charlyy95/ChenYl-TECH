@@ -1,12 +1,12 @@
 #include "animal.h"
 #include "fillTable.h"
 
-void clean_buffer(){
+void clean_buffer(){			//clean input buffer to avoid infinite loop for scanf
 
-	while (getchar() != '\n');					//clean input buffer to avoid infinite loop for scanf
+	while (getchar() != '\n');					
 	}
 	
-void singularPlural(int *count){
+void singularPlural(int *count){	//change the display depending on the number of animals 
 	if (*count <= 1){
 		printf ("%d animal matches this search\n", *count);
 		printf ("You can't search more, end of search.\n");
@@ -15,7 +15,7 @@ void singularPlural(int *count){
 		printf ("%d animals match this search\n\n", *count);
 	}
 }
-void convert_weight (float weight){
+void convert_weight (float weight){		//convert weight to grams if its too low 
 	float weight_gram = weight * 1000;
     int test_int;
 	
@@ -41,7 +41,7 @@ void convert_weight (float weight){
     }
 }
 
-void displayAnimal (Animal * tab, int * c){
+void displayAnimal (Animal * tab, int * c){	//display all informations about an animal
 	printf ("Animal #%d :\n\n", (*c+1)); 
 	printf ("Id      : %d\n", tab[*c].id);
 	printf ("Name    : %s\n", tab[*c].name);
@@ -64,7 +64,7 @@ void displayAllAnimals (Animal * tab, int *nbAnimals){
 	}
 }
 
-void saveAnimal (Animal * tab, Animal * newTab, int i, int *count){
+void saveAnimal (Animal * tab, Animal * newTab, int i, int *count){	//save an animal in a new tab and display it
 	
 	newTab[*count].id = tab[i].id;
 	strcpy (newTab[*count].name, tab[i].name);
@@ -80,7 +80,7 @@ void saveAnimal (Animal * tab, Animal * newTab, int i, int *count){
 int calculateAge(int yearBirth){
 	
 	time_t t = time(NULL);			//recup actual time
-	struct tm ActualDate = *localtime (&t);		//currrent year in ActualDate.tm_year 
+	struct tm ActualDate = *localtime (&t);		//current year in ActualDate.tm_year 
 	
 	int current_year = ActualDate.tm_year + 1900;		//tm_year gives the number of years since 1900.
 	
@@ -88,7 +88,7 @@ int calculateAge(int yearBirth){
 	return age;
 }
 
-Animal *fillTable (int * nbAnimals){	
+Animal *fillTable (int * nbAnimals){	//fill a tab with all animal files 
 	
 	FILE *f;
 	
@@ -109,7 +109,7 @@ Animal *fillTable (int * nbAnimals){
 		f = fopen(chain, "r");
 		
 		if (f == NULL){
-			continue;											//prevents reading of non-existent files
+			continue;						//prevents reading of non-existent files
 		}
 				
 		fscanf (f, "%d", &tab[*nbAnimals].id);
@@ -215,34 +215,34 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 		
 		do {
 		
-		printf("Search for an animal by age:\n");
-		printf("1 - Young (age below a certain value)\n");
-		printf("2 - Old   (age above a certain value)\n");
+			printf("Search for an animal by age:\n");
+			printf("1 - Young (age below a certain value)\n");
+			printf("2 - Old   (age above a certain value)\n");
 
 		
-		test = scanf("%d", &choice);
+			test = scanf("%d", &choice);
 
-		if (test != 1 || choice < 1 || choice > 2) {
-			printf("Invalide choice\n");
+			if (test != 1 || choice < 1 || choice > 2) {
+				printf("Invalide choice\n");
 
-			clean_buffer();
-		}
-	} while (test != 1 || choice < 1 || choice > 2);
+				clean_buffer();
+			}
+		} while (test != 1 || choice < 1 || choice > 2);
 		
 		
 		if (choice == 1){
 			
 			do {
 			
-			printf("Enter the maximum age you're looking for:\n");
+				printf("Enter the maximum age you're looking for:\n");
 		
-			test = scanf("%d", &searchAge);
+				test = scanf("%d", &searchAge);
 
-			if (test != 1 || searchAge < 0 || searchAge > 100) {
-				printf("Invalid age\n");
+				if (test != 1 || searchAge < 0 || searchAge > 100) {
+					printf("Invalid age\n");
 
-				clean_buffer();
-			}
+					clean_buffer();
+				}
 			} while (test != 1 || searchAge < 0 || searchAge > 100);
 			
 			for (int i = 0; i<*pAnimals; i++){
@@ -252,21 +252,21 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 				}
 			}
 			singularPlural(count);
-		}			
+		}		
 		
 		
 		if (choice == 2){
 			
 			do {
 			
-			printf("Enter the minimum age you're looking for:\n");;
-			test = scanf("%d", &searchAge);
+				printf("Enter the minimum age you're looking for:\n");;
+				test = scanf("%d", &searchAge);
 
-			if (test != 1 || searchAge < 0 || searchAge > 100) {
-				printf("Invalid age\n");
+				if (test != 1 || searchAge < 0 || searchAge > 100) {
+					printf("Invalid age\n");
 
-				clean_buffer();
-			}
+					clean_buffer();
+				}
 			} while (test != 1 || searchAge < 0 || searchAge > 100);
 			
 			for (int i = 0; i<*pAnimals; i++){
@@ -280,5 +280,5 @@ Animal * search (Animal * tab, int * count, int * pAnimals){
 				
 	}
 	
-	return newTab;
+	return newTab;				// !! free (newTab) on main
 }
