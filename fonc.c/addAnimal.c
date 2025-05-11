@@ -149,7 +149,7 @@ int addAnimal(Animal animals[], int *count) {
     int valid_name = 0;
     do {
         printf("Name (letters only, 2-30 chars, no spaces): ");
-        if (fgets(newAnimal.name, sizeof(newAnimal.name), stdin) {
+        if (fgets(newAnimal.name, sizeof(newAnimal.name), stdin)) {
             newAnimal.name[strcspn(newAnimal.name, "\n")] = '\0';
             
             // Basic validation
