@@ -142,6 +142,10 @@ int addAnimal(Animal animals[], int *count) {
     Animal newAnimal = {0};
     newAnimal.id = findAvailableId(animals, *count);
     
+    if (newAnimal.id <= 0) {  // Bloque -1 et 0
+    printf("Error: No available ID.\n");
+    return 0;
+}
     printf("\nAdding Animal ID: %d\n", newAnimal.id);
     clearInputBuffer();
 
