@@ -9,6 +9,7 @@
 #include <stdbool.h>  // Boolean data type
 #include <sys/stat.h> // Directory creation (mkdir)
 #include <ctype.h>    // Character handling functions
+#include <strings.h>  // for strcasecmp()
 
 // File operations
 bool saveAnimalToFile(const Animal *animal);
