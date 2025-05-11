@@ -104,7 +104,7 @@ Animal *fillTable (int * nbAnimals){	//fill a tab with all animal files
 		
 	for (int a=0; a<MAX_ANIMALS; a++){	
 		
-		sprintf(chain, "animaux/%d.txt", a+1);				// create string "animaux/(a+1).txt"
+		sprintf(chain, "%s/%d.txt", ANIMALS_DIR, a+1);				// create string "animaux/(a+1).txt"
 		
 		f = fopen(chain, "r");
 		
